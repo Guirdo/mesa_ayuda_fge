@@ -19,12 +19,10 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('idTipoUsuario');
-            //$table->integer('idEmpleado');
+            $table->bigInteger('idTipoUsuario')->unsigned();
+            //$table->bigInteger('idEmpleado')->unsigned();
             $table->rememberToken();
-            $table->timestamps();
-
-            //$table->foreign('idTipoUsuario')->references('id')->on('cat__tipo_usuarios');
+            $table->timestamps();            
         });
     }
 

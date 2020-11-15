@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCatTipoUsuariosTable extends Migration
+class CreateSolicitudsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateCatTipoUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('cat__tipo_usuarios', function (Blueprint $table) {
-            $table->id();
-            $table->string('tipoUsuario',15);
+        Schema::create('solicituds', function (Blueprint $table) {
+            $table->string('folio',9);
+            $table->string('oficioRelacionado',45);
+            $table->text('descripcionFalla');
+            $table->text('diagnostico');
+            $table->text('respaldo');
             $table->timestamp('FUA');
         });
     }
@@ -27,7 +30,6 @@ class CreateCatTipoUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('cat__tipo_usuarios');
+        Schema::dropIfExists('solicituds');
     }
 }
