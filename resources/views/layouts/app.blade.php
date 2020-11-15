@@ -97,7 +97,7 @@
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="#" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Equipos</a>
+                                <a href="{{ route('equipos.index') }}" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Equipos</a>
                             </li>
                         </ul>
                     </div>
