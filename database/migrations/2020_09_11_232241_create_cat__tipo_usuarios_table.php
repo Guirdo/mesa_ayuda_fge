@@ -27,6 +27,7 @@ class CreateCatTipoUsuariosTable extends Migration
      */
     public function down()
     {
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('cat__tipo_usuarios');
     }
 }

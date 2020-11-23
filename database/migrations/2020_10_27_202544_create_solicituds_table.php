@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCatTipoEquiposTable extends Migration
+class CreateSolicitudsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateCatTipoEquiposTable extends Migration
      */
     public function up()
     {
-        Schema::create('cat_tipo_equipos', function (Blueprint $table) {
-            $table->id();
-            $table->string('tipoEquipo',45);
+        Schema::create('solicituds', function (Blueprint $table) {
+            $table->string('folio',9);
+            $table->string('oficioRelacionado',45);
+            $table->text('descripcionFalla');
+            $table->text('diagnostico');
+            $table->text('respaldo');
             $table->timestamp('FUA');
-
         });
     }
 
@@ -28,7 +30,6 @@ class CreateCatTipoEquiposTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('cat_tipo_equipos');
+        Schema::dropIfExists('solicituds');
     }
 }

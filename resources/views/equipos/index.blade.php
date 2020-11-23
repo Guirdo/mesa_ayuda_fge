@@ -25,6 +25,7 @@
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
+                                <td scope="col">ID</td>
                                 <td scope="col">Marca</td>
                                 <td scope="col">Modelo</td>
                                 <td scope="col">No. Serie</td>
@@ -32,9 +33,21 @@
                                 <td scope="col">--</td>
                             </tr>
                         </thead>
-
-                        
+                         <tbody>
+                            @foreach ($equipos as $equipo)
+                            <tr>
+                                <td>{{ $equipo->id }}</td>
+                                <td>{{ $equipo->marca }}</td>
+                                <td>{{ $equipo->modelo }}</td>
+                                <td>{{ $equipo->numeroSerie }}</td>
+                                <td>{{ $equipo->claveInventarial }}</td>
+                                <td><a href="{{ route('equipos.show',$equipo->id) }}">VER</a></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
                     </table>
+
+
 
                 </div>
             </div>

@@ -24,3 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('users', 'UserController');
 Route::resource('empleados', 'EmpleadoController');
 Route::resource('equipos', 'EquipoController');
+Route::resource('solicitud','SolicitudController');
+Route::post('/empleados/adscripciones','EmpleadoController@adscripciones');
+Route::post('/empleados/areas','EmpleadoController@areas');
+Route::post('/empleados/darEmpleado','EmpleadoController@darEmpleado');

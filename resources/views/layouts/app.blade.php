@@ -101,11 +101,15 @@
                             </li>
                         </ul>
                     </div>
-                    @else
+                    
+                    @endif
+                    @if (Auth::user()->idTipoUsuario == 2)
+                    <!-- Soporte -->
+                    
                     <div class="sidebar-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="#" class="nav-link"><ion-icon name="add-circle-outline"></ion-icon>Registrar solicitud</a>
+                                <a href="{{ route('home') }}" class="nav-link"><ion-icon name="add-circle-outline"></ion-icon>Registrar solicitud</a>
                             </li>
                         </ul>
                         <ul class="nav flex-column">
@@ -116,10 +120,11 @@
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="#" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Equipos</a>
+                                <a href="{{ route('equipos.index') }}"class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Equipos</a>
                             </li>
                         </ul>
                     </div>
+                        
                     @endif
                 </nav>
 
@@ -130,6 +135,8 @@
         </div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://unpkg.com/ionicons@5.1.2/dist/ionicons.js"></script>
+    @yield('scripts')
 </body>
 </html>

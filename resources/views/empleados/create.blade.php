@@ -12,38 +12,75 @@
 
                 <form action="{{ route('empleados.store') }}" method="POST">
                         @csrf
-                        <div class="container row justify-content-between">
-                            <div class="form-group">
-                                <label for="">Nombre</label>
-                                <input class="form-control" type="text" name="nombre">
-                            </div>
 
-                            <div class="form-group">
+                        <div class="form-group">
+                            <label for="">Nombre</label>
+                            <input class="form-control" type="text" name="nombre">
+                        </div>
+
+                        <div class="row">
+                            <div class="col form-group">
                                 <label for="">Apellido paterno</label>
                                 <input class="form-control" type="text" name="apellidoPat">
                             </div>
 
-                            <div class="form-group">
+                            <div class="col form-group">
                                 <label for="">Apellido materno</label>
                                 <input class="form-control" type="text" name="apellidoMat">
                             </div>
                         </div>
 
-                        <div class="container row">
-                            <div class="form-group">
+                        <div class="row">
+                            <div class="col form-group">
                                 <label for="">Telefono</label>
                                 <input class="form-control" type="text" name="telefonoPersonal">
                             </div>
 
-                            <div class="form-group ml-5">
+                            <div class="col form-group">
                                 <label for="">Extencion telefono de oficina</label>
                                 <input class="form-control" type="text" name="extencionTelOf">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label for="">CUIP</label>
-                            <input class="form-control" type="text" name="CUIP">
+                            <div class="row">
+                                <label for="">Email</label>
+                                <input class="form-control" type="text" name="email">
+                            </div>
+
+                            <div class="row">
+                                <label for="">CUIP</label>
+                                <input class="form-control" type="text" name="CUIP">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Region</label>
+                            <select class="form-control" name="region" id="region">
+                                @foreach($regiones as $region)
+                                <option value="{{ $region->id }}">{{ $region->region }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="">Adscripcion</label>
+                        <select class="form-control" name="adscripcion" id="adscripcion">
+                            @foreach($adscripciones as $adscripcion)
+                                @if($adscripcion->idRegion == 1)
+                                <option value="{{ $adscripcion->id }}">{{ $adscripcion->adscripcion }}</option>
+                                @endif
+                            @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Area</label>
+                            <select class="form-control" name="area" id="area">
+                                @foreach($areas as $area)
+                                <option value="{{ $area->id }}">{{ $area->area }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <a href="{{ route('empleados.index') }}" class="btn btn-secondary">Regresar</a>
@@ -56,4 +93,9 @@
     </div>
 </div>
 
+
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/empleados/index.js') }}"></script>
 @endsection

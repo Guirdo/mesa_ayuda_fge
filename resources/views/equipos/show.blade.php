@@ -6,49 +6,44 @@
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header">{{ __('Empleado #'.$empleado->id) }}</div>
+                <div class="card-header">{{ __('Equipo #'.$equipos->id) }}</div>
 
                 <div class="card-body">
 
                     <div class="row justify-content-center">
                         <div class="col">
                             <div class="col">
-                                <h5>Nombre</h5>
-                                <p>{{ $empleado->nombre.' '.$empleado->apellidoPat.' '.$empleado->apellidoMat }}</p>
+                                <h5>Marca</h5>
+                                <p>{{ $equipos->marca }}</p>
                             </div>
 
                             <div class="col">
-                                <h5>Telefono personal</h5>
-                                <p>
-                                @if($empleado->telefonoPersonal==null)
-                                    NO DATA
-                                @else
-                                    {{ $empleado->telefonoPersonal }}
-                                @endif
-                                </p>
+                                <h5>Modelo</h5>
+                                <p>{{ $equipos->modelo }} </p>
                             </div>
 
                             <div class="col">
-                                <h5>Extencion Oficina</h5>
-                                <p>@if($empleado->extencionTelOf==null)
-                                    NO DATA
-                                @else
-                                    {{ $empleado->extencionTelOf }}
-                                @endif</p>
+                                <h5>Numero de Serie</h5>
+                                <p>{{ $equipos->numeroSerie }}</p>
                             </div>
 
                             <div class="col">
-                                <h5>CUIP</h5>
-                                <p>{{ $empleado->CUIP }}</p>
+                                <h5>Clave Inventarial</h5>
+                                <p>{{ $equipos->claveInventarial }}</p>
+                            </div>
+
+                          <div class="col">
+                                <h5>Tipo</h5>
+                                <p>{{ $tipoEquipo->tipoEquipo }}</p>
                             </div>
                         </div>
 
                         <div class="col">
-                            <a href="{{ route('empleados.index') }}" class="btn btn-secondary">Regresar</a>
+                            <a href="{{ route('equipos.index') }}" class="btn btn-secondary">Regresar</a>
                             <div class="w-100 m-3"></div>
-                            <a href="{{ route('empleados.edit',$empleado->id) }}" class="btn btn-warning">Editar</a>
+                            <a href="{{ route('equipos.edit',$equipos->id) }}" class="btn btn-warning">Editar</a>
                             <div class="w-100 m-3"></div>
-                            <form action="{{ route('empleados.destroy',$empleado->id) }}" method="post">
+                            <form action="{{ route('equipos.destroy',$equipos->id) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger">Eliminar</button>
