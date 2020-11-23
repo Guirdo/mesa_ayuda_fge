@@ -30,3 +30,4 @@ Route::post('/empleados/areas','EmpleadoController@areas');
 Route::post('/empleados/darEmpleado','EmpleadoController@darEmpleado');
 
 Route::post('/solicitudes/asignar','SolicitudController@asignarSoporte');
+Route::resource('equipos', 'EquipoController');
