@@ -80,7 +80,7 @@
                     <div class="sidebar-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('home') }}" class="nav-link"><ion-icon name="add-circle-outline"></ion-icon>Registrar solicitud</a>
+                                <a href="{{ route('solicitudes.create') }}" class="nav-link"><ion-icon name="add-circle-outline"></ion-icon>Registrar solicitud</a>
                             </li>
                         </ul>
                         <ul class="nav flex-column">
@@ -98,6 +98,12 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a href="#" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Equipos</a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('solicitudes.index')}}" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Solicitudes</a>
                             </li>
                         </ul>
                     </div>

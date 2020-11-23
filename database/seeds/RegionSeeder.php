@@ -12,19 +12,31 @@ class RegionSeeder extends Seeder
     public function run()
     {
         DB::table('regions')->insert([
-            'region' => 'Centro',
+            'region' => 'CENTRO',
         ]);
 
         DB::table('regions')->insert([
-            'region' => 'Montaña',
+            'region' => 'ACAPULCO',
         ]);
 
         DB::table('regions')->insert([
-            'region' => 'Costa Grande',
+            'region' => 'NORTE',
         ]);
 
         DB::table('regions')->insert([
-            'region' => 'Costa Chica',
+            'region' => 'TIERRA CALIENTE',
+        ]);
+
+        DB::table('regions')->insert([
+            'region' => 'COSTA CHICA',
+        ]);
+
+        DB::table('regions')->insert([
+            'region' => 'COSTA GRANDE',
+        ]);
+
+        DB::table('regions')->insert([
+            'region' => 'MONTAÑA',
         ]);
     }
 }

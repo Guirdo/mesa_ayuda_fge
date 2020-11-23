@@ -47,6 +47,15 @@
                             <input class="form-control" type="text" name="CUIP" value="{{ $empleado->CUIP }}">
                         </div>
 
+                        <div class="form-group">
+                            <label for="">Adscripcion</label>
+                            <select name="adscripcion" class="form-control">
+                            @foreach($adscripciones as $adscripcion)
+                                <option value="{{ $adscripcion->id }}">{{ $adscripcion->adscripcion }}</option>
+                            @endforeach
+                            </select>
+                        </div>
+
                         <a href="{{ route('empleados.show',$empleado->id) }}" class="btn btn-secondary">Regresar</a>
                         <button type="submit" class="btn btn-warning">Editar</button>
 

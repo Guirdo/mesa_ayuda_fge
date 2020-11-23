@@ -24,7 +24,6 @@ class CreateEmpleadosTable extends Migration
             $table->string('CUIP',10);
             $table->bigInteger('idArea');
             $table->timestamp('FUA');
-            $table->softDeletes();
         });
     }
 
@@ -35,10 +34,6 @@ class CreateEmpleadosTable extends Migration
      */
     public function down()
     {
-        Schema::table('empleados', function (Blueprint $table) {
-            $table->dropSoftDeletes();
-        });
-
         Schema::dropIfExists('empleados');
     }
 }

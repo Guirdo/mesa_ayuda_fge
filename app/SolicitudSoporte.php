@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Empleado extends Model
+class SolicitudSoporte extends Model
 {
     CONST UPDATED_AT = 'FUA';
     

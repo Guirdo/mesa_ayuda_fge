@@ -14,11 +14,16 @@ class CreateSolicitudsTable extends Migration
     public function up()
     {
         Schema::create('solicituds', function (Blueprint $table) {
-            $table->string('folio',9);
-            $table->string('oficioRelacionado',45);
+            $table->id();
+            $table->string('folio',20);
+            $table->string('oficioRelacionado',45)->nullable();
             $table->text('descripcionFalla');
-            $table->text('diagnostico');
-            $table->text('respaldo');
+            $table->text('diagnostico')->nullable();
+            $table->text('respaldo')->nullable();
+            $table->bigInteger('tipoSolicitud');
+            $table->bigInteger('tipoServicio');
+            $table->bigInteger('idEmpleado');
+            $table->bigInteger('idEstado')->default(1);
             $table->timestamp('FUA');
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdscripcionsTable extends Migration
+class CreateCatTipoSolicitudsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateAdscripcionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('adscripcions', function (Blueprint $table) {
+        Schema::create('cat__tipo__solicituds', function (Blueprint $table) {
             $table->id();
-            $table->text('adscripcion');
-            $table->bigInteger('idRegion');
+		    $table->string('tipoSolicitud',20);
             $table->timestamp('FUA');
-
-            //$table->foreign('idRegion')->references('id')->on('regions')->cascade();
         });
     }
 
@@ -30,6 +27,6 @@ class CreateAdscripcionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adscripcions');
+        Schema::dropIfExists('cat__tipo__solicituds');
     }
 }

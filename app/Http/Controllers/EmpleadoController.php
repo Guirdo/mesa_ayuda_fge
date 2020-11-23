@@ -38,8 +38,9 @@ class EmpleadoController extends Controller
     public function edit($id)
     {
         $empleado = Empleado::find($id);
+        $adscripciones = Adscripcion::all();
 
-        return view('empleados.edit', compact('empleado'));
+        return view('empleados.edit', compact('empleado','adscripciones'));
     }
 
     public function update(Request $request,$id)
