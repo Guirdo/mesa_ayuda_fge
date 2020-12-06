@@ -17,8 +17,11 @@ class DatabaseSeeder extends Seeder
             AreaSeeder::class,
             EmpleadoSeeder::class,
             
+            CatTipoReparacionSeeder::class,
+            CatEstadoSeeder::class,
             Cat_Tipo_SolicitudSeeder::class,
             Cat_TipoServicioSeeder::class,
+            TipoEquipoSeeder::class,
             TipoUsuarioSeeder::class,
             UserSeeder::class,
         ]);

@@ -937,7 +937,8 @@
             "data",
             "faker",
             "fixtures"
-        ]
+        ],
+        "abandoned": true
     },
     {
         "name": "guzzlehttp/guzzle",

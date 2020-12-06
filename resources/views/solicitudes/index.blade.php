@@ -37,7 +37,7 @@
                             @foreach ($solicitudes as $solicitud)
                             <tr>
                                 <td>{{ $solicitud->folio }}</td>
-                                <td>{{ $solicitud->FUA }}</td>
+                                <td>{{ $solicitud->fechaRegistro }}</td>
                                 <td><span class="text-danger">SIN ATENDER</span></td>
                                 <td><a href="{{ route('solicitudes.show',$solicitud) }}">VER</a></td>
                             </tr>
@@ -60,7 +60,7 @@
                             @foreach ($solicitudesA as $solicitud)
                             <tr>
                                 <td>{{ $solicitud->folio }}</td>
-                                <td>{{ $solicitud->FUA }}</td>
+                                <td>{{ $solicitud->fechaRegistro }}</td>
                                 <td><span class="text-primary">ATENDIENDO</span></td>
                                 <td><a href="{{ route('solicitudes.show',$solicitud) }}">VER</a></td>
                             </tr>
@@ -73,4 +73,9 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/html-docx-js@0.3.1/build/api.min.js"></script>
+    <script type="module" src="{{ asset('js/solicitudes/prueba.js') }}"></script>
 @endsection

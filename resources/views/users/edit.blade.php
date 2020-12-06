@@ -36,6 +36,7 @@
                                 @endforeach
                             </select>
                         </div>
+                        
 
                         <a href="{{ route('users.show',$usuario->id) }}" class="btn btn-secondary">Regresar</a>
                         <button type="submit" class="btn btn-warning">Editar</button>

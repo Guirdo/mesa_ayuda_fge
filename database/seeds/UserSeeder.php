@@ -26,5 +26,13 @@ class UserSeeder extends Seeder
             'idTipoUsuario' => 2,
             'idEmpleado' => 2,
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'Soporter2',
+            'email' => 'soport2@gmail.com',
+            'password' => Hash::make('password'),
+            'idTipoUsuario' => 2,
+            'idEmpleado' => 3,
+        ]);
     }
 }

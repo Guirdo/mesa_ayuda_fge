@@ -12,15 +12,15 @@ class Cat_Tipo_SolicitudSeeder extends Seeder
     public function run()
     {
         DB::table('cat__tipo__solicituds')->insert([
-            'tipoSolicitud' => 'Via telefonica',
+            'tipoSolicitud' => 'VIA TELEFONICA',
         ]);
 
         DB::table('cat__tipo__solicituds')->insert([
-            'tipoSolicitud' => 'Oficio relacionado',
+            'tipoSolicitud' => 'OFICIO RELACIONADO',
         ]);
 
         DB::table('cat__tipo__solicituds')->insert([
-            'tipoSolicitud' => 'Web',
+            'tipoSolicitud' => 'WEB',
         ]);
     }
 }

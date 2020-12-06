@@ -2,20 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Equipo;
+use App\cat_tipo_equipo;
+use App\Computadora;
+
 class EquipoController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return void
      */
     public function index()
     {
        $equipos = Equipo::all();
-        return view('equipos.index', compact('equipos'));
+       $tipoEquipo=cat_tipo_equipo::all();
+
+        return view('equipos.index', compact('equipos','tipoEquipo'));
     }
 
     /**
@@ -25,7 +30,9 @@ class EquipoController extends Controller
      */
     public function create()
     {//TODO
-        return view('equipos.create');
+        $tipoEquipo = cat_tipo_equipo::all();
+
+        return view('equipos.create',compact('tipoEquipo'));
     }
 
     /**
@@ -38,13 +45,27 @@ class EquipoController extends Controller
     {
         $equipo = new Equipo;
 
-        $equipo->marca = request('nombreE');
+        $equipo->marca = request('marca');
         $equipo->modelo = request('modelo');
         $equipo->numeroSerie = request('numeroSerie');
         $equipo->claveInventarial = request('claveInventarial');
-        $equipo->idTipoEquipo = request('idTipoEquipo');
+        $equipo->idTipoEquipo = request('tipoEquipo');
+        $valida = request('tipoEquipo');
+        
+
+        if($valida==73){
+            $computadora = new Computadora;
+            $computadora->equipo_numeroSerie= request('numeroSerie');
+            $computadora->grupo_de_trabajo = request('grupodetrabajo');
+            $computadora->discoDuro = request('discoduro');
+            $computadora->sistemaOperativo = request('memoria');
+            $computadora->ram = request('sistemaoperativo');
+            $computadora->procesador = request('procesador');
+            $computadora->save();
+        }
 
         $equipo->save();
+        
         return redirect()->route('equipos.index');
     }
 
@@ -56,7 +77,11 @@ class EquipoController extends Controller
      */
     public function show($id)
     {
-        //
+        $equipos = Equipo::find($id);
+        $tipoEquipo=cat_tipo_equipo::find($equipos->idTipoEquipo);
+
+        return view('equipos.show', compact('equipos','tipoEquipo'));
+        
     }
 
     /**
@@ -67,7 +92,11 @@ class EquipoController extends Controller
      */
     public function edit($id)
     {
-        //
+        $equipos = Equipo::find($id);
+        $tipoEquipo=cat_tipo_equipo::all();
+
+        return view('equipos.edit', compact('equipos','tipoEquipo'));
+
     }
 
     /**
@@ -79,7 +108,19 @@ class EquipoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $equipo = Equipo::find($id);
+
+        $equipo->marca = request('marca');
+        $equipo->modelo = request('modelo');
+        $equipo->numeroSerie = request('numeroSerie');
+        $equipo->claveInventarial = request('claveInventarial');
+        $equipo->idTipoEquipo = request('tipoEquipo');
+
+        $equipo->save();
+
+        return redirect()->route('equipos.show', $id);
+
+
     }
 
     /**
@@ -90,6 +131,18 @@ class EquipoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $equipo = Equipo::find($id);
+        
+
+        $equipo->delete();
+
+        return redirect()->route('equipos.index');
+    }
+
+    public function buscarEquipo(Request $request){
+        $equipo = Equipo::where('numeroSerie',request('noSerie'))->first();
+        $tipoEquipo = cat_tipo_equipo::find($equipo->idTipoEquipo);
+
+        return response()->json(['equipo'=>$equipo,'tipoEquipo'=>$tipoEquipo]);
     }
 }

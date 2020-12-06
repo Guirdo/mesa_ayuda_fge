@@ -37,6 +37,7 @@
                                 <input type="text" name="CUIP" id="CUIP" class="form-control">
                             </div>
                             <button class="btn btn-success" id="btnBuscar">Buscar</button>
+                            <a href="{{ route('empleados.create') }}" class="btn btn-warning">Agregar empleado</a>
                         </div>
 
                         <div class="row">

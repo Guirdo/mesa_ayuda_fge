@@ -4,10 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Solicitud;
 use App\User;
+use App\Equipo;
+use App\Computadora;
 use App\SolicitudSoporte;
+use App\EquipoSolicitud;
+use App\cat_tipo_equipo;
 use App\Empleado;
 use App\Cat_Tipo_Solicitud;
 use App\Cat_TipoServicio;
+use App\CatTipoReparacion;
 use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
@@ -64,7 +69,7 @@ class SolicitudController extends Controller
 
         $solicitud->save();
 
-        return redirect()->route('home');
+        return redirect()->route('solicitudes.index');
     }
 
     /**
@@ -80,6 +85,7 @@ class SolicitudController extends Controller
 
         $tipoSolicitud = Cat_Tipo_Solicitud::find($solicitud->tipoSolicitud);
         $tipoServicio = Cat_TipoServicio::find($solicitud->tipoServicio);
+        $tipoReparacion = CatTipoReparacion::all();
 
         $solSop = SolicitudSoporte::where('idSolicitud',$id)->first();
         $usuarios = User::all();
@@ -96,7 +102,21 @@ class SolicitudController extends Controller
             $soporte = Empleado::find($solSop->idSoporte);
         }
 
-        return view('solicitudes.show',compact('empleado','solicitud','tipoSolicitud','tipoServicio','solSop','soporte'));
+        $equipo = null;
+        $tipoEquipo = null;
+        $computadora = null;
+        $equSol = EquipoSolicitud::where('idSolicitud',$id)->first();
+        if($equSol != null){
+            $equipo = Equipo::find($equSol->idEquipo);
+            $tipoEquipo = cat_tipo_equipo::find($equipo->idTipoEquipo);
+            if($tipoEquipo->tipoEquipo == 'COMPUTADORA'){
+                $computadora = Computadora::where('equipo_numeroSerie',$equipo->numeroSerie)->first();
+            }
+        }
+
+        return view('solicitudes.show',compact('empleado','solicitud','tipoSolicitud','tipoReparacion'
+                                                ,'tipoServicio','solSop','soporte','equipo'
+                                                ,'tipoEquipo','computadora'));
     }
 
     /**
@@ -144,9 +164,42 @@ class SolicitudController extends Controller
         $solicitud->idEstado = 2;
         $solicitud->save();
 
-        $solicitudes = Solicitud::where('idEstado',1)->get();
-        $solicitudesA = Solicitud::where('idEstado',2)->get();
-        return view('solicitudes.index',compact('solicitudes','solicitudesA'));
+        return redirect()->route('solicitudes.show',$solicitud->id);
+    }
+
+    public function guardarEquipo(Request $request){
+        $noSerie = request('noSerie');
+        $idSolicitud = request('idSol');
+        $equipo = Equipo::where('numeroSerie',$noSerie)->first();
+
+        $equSol = new EquipoSolicitud;
+        $equSol->idSolicitud = $idSolicitud;
+        $equSol->idEquipo = $equipo->id;
+        $equSol->save();
+
+        return redirect()->route('solicitudes.show',$idSolicitud);
+    }
+
+    public function guardarObservacion(Request $request){
+        $solicitud = Solicitud::find(request('idSol'));
+
+        $solicitud->observaciones = request('observacion');
+        $solicitud->tipoReparacion = request('tipoReparacion');
+
+        $solicitud->save();
+
+        return redirect()->route('solicitudes.show',$solicitud->id);
+    }
+
+    public function guardarDiagnostico(){
+        $solicitud = Solicitud::find(request('idSol'));
+
+        $solicitud->diagnostico = request('diagnostico');
+        $solicitud->respaldo = request('carpeta');
+
+        $solicitud->save();
+
+        return redirect()->route('solicitudes.show',$solicitud->id);
     }
 
     private function crearFolio($numero){
@@ -159,5 +212,23 @@ class SolicitudController extends Controller
         }else{
             return 'FGE-000'.$numero.'-'.date('Y');
         }
+    }
+
+    public function terminarSolicitud(Request $request){
+        $solicitud = Solicitud::find(request('idSol'));
+
+        $solicitud->idEstado = 3;
+        $solicitud->save();
+
+        return redirect()->route('solicitudes.index');
+    }
+
+    public function posponerSolicitud(Request $request){
+        $solicitud = Solicitud::find(request('idSol'));
+
+        $solicitud->idEstado = 4;
+        $solicitud->save();
+
+        return redirect()->route('solicitudes.index');
     }
 }

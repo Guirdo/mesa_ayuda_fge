@@ -18,13 +18,16 @@ class CreateSolicitudsTable extends Migration
             $table->string('folio',20);
             $table->string('oficioRelacionado',45)->nullable();
             $table->text('descripcionFalla');
+            $table->text('observaciones')->nullable();
             $table->text('diagnostico')->nullable();
             $table->text('respaldo')->nullable();
             $table->bigInteger('tipoSolicitud');
             $table->bigInteger('tipoServicio');
+            $table->bigInteger('tipoReparacion')->default(1);
             $table->bigInteger('idEmpleado');
             $table->bigInteger('idEstado')->default(1);
-            $table->timestamp('FUA');
+            $table->timestamp('FUA')->useCurrentOnUpdate();
+            $table->timestamp('fechaRegistro')->useCurrent();
         });
     }
 

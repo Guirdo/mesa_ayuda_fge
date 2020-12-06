@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-9">
             <div class="card">
-                <div class="card-header">{{ __('Crear usuario') }}</div>
+                <div class="card-header">{{ __('Agregar empleado') }}</div>
 
                 <div class="card-body">
 

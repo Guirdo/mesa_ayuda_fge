@@ -91,41 +91,46 @@
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('empleados.index') }}" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Empleados</a>
+                                <a href="{{ route('empleados.index') }}" class="nav-link"><ion-icon name="briefcase-outline"></ion-icon>Gestion Empleados</a>
                             </li>
                         </ul>
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('equipos.index') }}" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Equipos</a>
+                                <a href="{{ route('equipos.index') }}" class="nav-link"><ion-icon name="desktop-outline"></ion-icon>Gestion Equipos</a>
                             </li>
                         </ul>
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('solicitudes.index')}}" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Solicitudes</a>
+                                <a href="{{ route('solicitudes.index')}}" class="nav-link"><ion-icon name="document-attach-outline"></ion-icon>Gestion Solicitudes</a>
                             </li>
                         </ul>
                     </div>
-                    @else
+                    
+                    @endif
+                    @if (Auth::user()->idTipoUsuario == 2)
+                    <!-- Soporte -->
+                    
                     <div class="sidebar-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="#" class="nav-link"><ion-icon name="add-circle-outline"></ion-icon>Registrar solicitud</a>
+                                <a href="{{ route('solicitudes.create') }}" class="nav-link"><ion-icon name="add-circle-outline"></ion-icon>Registrar solicitud</a>
                             </li>
                         </ul>
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="#" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Visualizar solicitudes</a>
+                                <a href="{{ route('solicitudes.index')}}" class="nav-link"><ion-icon name="document-attach-outline"></ion-icon>Gestion Solicitudes</a>
                             </li>
                         </ul>
 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="#" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Equipos</a>
+                                <a href="{{ route('equipos.index') }}" class="nav-link"><ion-icon name="desktop-outline"></ion-icon>Gestion Equipos</a>
                             </li>
                         </ul>
                     </div>
+                        
                     @endif
                 </nav>
 

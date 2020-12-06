@@ -30,4 +30,11 @@ Route::post('/empleados/areas','EmpleadoController@areas');
 Route::post('/empleados/darEmpleado','EmpleadoController@darEmpleado');
 
 Route::post('/solicitudes/asignar','SolicitudController@asignarSoporte');
+Route::post('/solicitudes/guardarEquipo','SolicitudController@guardarEquipo');
+Route::post('/solicitudes/guardarObservacion','SolicitudController@guardarObservacion');
+Route::post('/solicitudes/guardarDiagnostico','SolicitudController@guardarDiagnostico');
+Route::post('/solicitudes/terminar','SolicitudController@terminarSolicitud');
+Route::post('/solicitudes/posponer','SolicitudController@posponerSolicitud');
+
 Route::resource('equipos', 'EquipoController');
+Route::post('/equipos/buscarEquipo','EquipoController@buscarEquipo');
