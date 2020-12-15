@@ -28,6 +28,7 @@ Route::resource('solicitudes','SolicitudController');
 Route::post('/empleados/adscripciones','EmpleadoController@adscripciones');
 Route::post('/empleados/areas','EmpleadoController@areas');
 Route::post('/empleados/darEmpleado','EmpleadoController@darEmpleado');
+Route::post('/empleados/buscarEmpleados','EmpleadoController@buscarEmpleados');
 
 Route::post('/solicitudes/asignar','SolicitudController@asignarSoporte');
 Route::post('/solicitudes/guardarEquipo','SolicitudController@guardarEquipo');
@@ -35,6 +36,8 @@ Route::post('/solicitudes/guardarObservacion','SolicitudController@guardarObserv
 Route::post('/solicitudes/guardarDiagnostico','SolicitudController@guardarDiagnostico');
 Route::post('/solicitudes/terminar','SolicitudController@terminarSolicitud');
 Route::post('/solicitudes/posponer','SolicitudController@posponerSolicitud');
+Route::post('/solicitudes/generar','SolicitudController@generarPDF');
+Route::get('/solicitudes/recibo/{folio}','SolicitudController@generarRecibo')->name('solicitudes.recibo');
 
 Route::resource('equipos', 'EquipoController');
 Route::post('/equipos/buscarEquipo','EquipoController@buscarEquipo');

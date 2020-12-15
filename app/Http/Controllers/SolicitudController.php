@@ -10,6 +10,7 @@ use App\SolicitudSoporte;
 use App\EquipoSolicitud;
 use App\cat_tipo_equipo;
 use App\Empleado;
+use App\Area;
 use App\Cat_Tipo_Solicitud;
 use App\Cat_TipoServicio;
 use App\CatTipoReparacion;
@@ -217,10 +218,10 @@ class SolicitudController extends Controller
     public function terminarSolicitud(Request $request){
         $solicitud = Solicitud::find(request('idSol'));
 
-        $solicitud->idEstado = 3;
-        $solicitud->save();
+        //$solicitud->idEstado = 3;
+        //  $solicitud->save();
 
-        return redirect()->route('solicitudes.index');
+        return redirect()->route('solicitudes.recibo',$solicitud->folio);
     }
 
     public function posponerSolicitud(Request $request){
@@ -230,5 +231,65 @@ class SolicitudController extends Controller
         $solicitud->save();
 
         return redirect()->route('solicitudes.index');
+    }
+
+    public function generarPDF(Request $request){
+        $idSol = request('idSol');
+        $solicitud = Solicitud::find($idSol);
+        $empleado = Empleado::find($solicitud->idEmpleado);
+        $area = Area::find($empleado->idArea);
+
+        $solSop = SolicitudSoporte::where('idSolicitud',$idSol)->first();
+        $soporte = Empleado::find($solSop->idSoporte);
+
+        $tipoSolicitud = Cat_Tipo_Solicitud::find($solicitud->tipoSolicitud);
+        $tipoServicio = Cat_TipoServicio::find($solicitud->tipoServicio);
+        $tipoReparacion = CatTipoReparacion::find($solicitud->tipoReparacion);
+
+        $computadora = null;
+        $equSol = EquipoSolicitud::where('idSolicitud',$solicitud->id)->first();
+        $equipo = Equipo::find($equSol->idEquipo);
+        $tipoEquipo = cat_tipo_equipo::find($equipo->idTipoEquipo);
+        if($tipoEquipo->tipoEquipo == 'COMPUTADORA'){
+            $computadora = Computadora::where('equipo_numeroSerie',$equipo->numeroSerie)->first();
+        }
+
+        return response()->json(['empleado'=>$empleado,'solicitud'=>$solicitud,'tipoSolicitud'=>$tipoSolicitud,
+                                'area'=>$area,'tipoSer'=>$tipoServicio,'equipo'=>$equipo,'computadora'=>$computadora,
+                                'tipoRep'=>$tipoReparacion,'soporte'=>$soporte]);
+    }
+
+    public function generarRecibo($folio){
+        $solicitud = Solicitud::where('folio',$folio)->first();
+        $tipoSolicitud = Cat_Tipo_Solicitud::find($solicitud->tipoSolicitud);
+        $empleado = Empleado::find($solicitud->idEmpleado);
+        $area = Area::find($empleado->idArea);
+        $tipoServicio = Cat_TipoServicio::find($solicitud->tipoServicio);
+
+        $computadora = null;
+        $equSol = EquipoSolicitud::where('idSolicitud',$solicitud->id)->first();
+        $equipo = Equipo::find($equSol->idEquipo);
+        $tipoEquipo = cat_tipo_equipo::find($equipo->idTipoEquipo);
+        if($tipoEquipo->tipoEquipo == 'COMPUTADORA'){
+            $computadora = Computadora::where('equipo_numeroSerie',$equipo->numeroSerie)->first();
+        }
+
+        return view('solicitudes.recibo',compact('solicitud','tipoSolicitud','empleado','area',
+                    'tipoServicio','equipo'));
+
+        /*
+        $id = request('idSol');
+        $solicitud = Solicitud::find($id);
+
+        $tipoReparacion = CatTipoReparacion::find($solicitud->tipoReparacion);
+
+        $solSop = SolicitudSoporte::where('idSolicitud',$id)->first();
+        $soporte = Empleado::find($solSop->idSoporte);
+
+        
+        
+
+        return response()->json(['solicitud'=>$solicitud,'tipoSol'=>$tipoSolicitud,'empleado'=>$empleado,
+                                'area'=>$area,'tipoSer'=>$tipoServicio]);*/
     }
 }

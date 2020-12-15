@@ -1,5 +1,9 @@
 @extends('layouts.guest')
 
+@section('styles')
+<link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="container-fluid">
             <div class="row">
@@ -14,37 +18,53 @@
                                 <div class="card-body">
                                     <form action="">
                                         <div class="form-group row">
-                                            <label for="cuipEmpleado" class="col-sm-2">CUIP</label>
+                                            <label class="col-sm-2">Empleado</label>
                                             <div class="col">
-                                                <input type="text" name="cuip" id="" class="form-control">
+                                                <input type="text" name="apellidoPat" id="" class="form-control">
                                             </div>
+                                            <button class="btn btn-success" id="btnBuscar">Buscar</button>
+                                        </div>
+
+                                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                            <table class="table" id="tbEmpleados">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Seleccion</th>
+                                                        <th>Nombre</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody id="tbCuerpo">
+
+                                                </tbody>
+                                            </table>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2">Nombre</label>
                                             <div class="col">
-                                                <input type="text" name="nombreEmpleado" id="" class="form-control" readonly>
+                                                <input type="text" name="nombreEmpleado" id="nombre" class="form-control" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2">Telefono</label>
                                             <div class="col">
-                                                <input type="text" name="" id="" class="form-control" readonly>
+                                                <input type="text" name="" id="telefono" class="form-control" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2">Email</label>
                                             <div class="col">
-                                                <input type="text" name="" id="" class="form-control" readonly>
+                                                <input type="text" name="" id="email" class="form-control" readonly>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <label for="" class="col-sm-2">Area</label>
                                             <div class="col">
-                                                <input type="text" name="" id="" class="form-control" readonly>
+                                                <input type="text" name="" id="area" class="form-control" readonly>
                                             </div>
                                         </div>
                                     </form>
@@ -59,4 +79,8 @@
             </div>
         </div>
 
+        @endsection
+
+        @section('scripts')
+        <script src="{{ asset('js/empleados/buscar.js') }}"></script>
         @endsection

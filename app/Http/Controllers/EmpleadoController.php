@@ -123,4 +123,10 @@ class EmpleadoController extends Controller
         return response()->json(['empleado'=>$empleado,'area'=>$area]);
     }
 
+    public function buscarEmpleados(Request $request){
+        $empleados = Empleado::where('apellidoPat',request('apellidoPat'))->get();
+        #$empleados = Empleado::all();
+        return response()->json(['empleados'=>$empleados]);
+    }
+
 }

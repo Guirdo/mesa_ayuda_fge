@@ -275,12 +275,12 @@
         <div class="row justify-content-around mt-3 mb-3">
             <form action="{{ url('solicitudes/terminar') }}" method="post">
             @csrf
-                <input type="hidden" name="idSol" value="{{ $solicitud->id }}">
+                <input type="hidden" id="idSol" name="idSol" value="{{ $solicitud->id }}">
                 <button id="btnTerminar" type="submit" class="btn btn-success">Terminar solicitud</button>
             </form>
             <form action="{{ url('solicitudes/posponer') }}" method="post">
             @csrf
-                <input type="hidden" name="idSol" value="{{ $solicitud->id }}">
+                <input type="hidden" id="idSol" name="idSol" value="{{ $solicitud->id }}">
                 <button class="btn btn-danger" type="submit">Posponer solicitud</button>
             </form>
         </div>
@@ -292,6 +292,7 @@
 
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
     <script src="{{ asset('js/equipos/buscar.js') }}"></script>
-    <script src="{{ asset('js/solicitudes/prueba.js') }}"></script>
+    <!-- <script src="{{ asset('js/solicitudes/generarPDF.js') }}"></script>-->
 @endsection
