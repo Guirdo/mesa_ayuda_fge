@@ -121,7 +121,7 @@
                         </ul>
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('solicitudes.index')}}" class="nav-link"><ion-icon name="document-attach-outline"></ion-icon>Gestion Solicitudes</a>
+                                <a href="{{ route('solicitudesSoporte.index')}}" class="nav-link"><ion-icon name="document-attach-outline"></ion-icon>Solicitudes</a>
                             </li>
                         </ul>
 
