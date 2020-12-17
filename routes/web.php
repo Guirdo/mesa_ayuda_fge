@@ -38,6 +38,7 @@ Route::post('/solicitudes/terminar','SolicitudController@terminarSolicitud');
 Route::post('/solicitudes/posponer','SolicitudController@posponerSolicitud');
 Route::post('/solicitudes/generar','SolicitudController@generarPDF');
 Route::get('/solicitudes/recibo/{folio}','SolicitudController@generarRecibo')->name('solicitudes.recibo');
-
 Route::resource('equipos', 'EquipoController');
 Route::post('/equipos/buscarEquipo','EquipoController@buscarEquipo');
+Route::resource('solicitudesSoporte','soporteSolicitudController');
+Route::post('/solicitudesSoporte/asignar','soporteSolicitudController@asignarSoporte');
