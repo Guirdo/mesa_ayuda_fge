@@ -29,7 +29,7 @@
                         </tr>
                         <!-- Datos del solicitante -->
                         <tr>
-                            <td class="table-dark text-center" colspan="4">Datos del solicitante</td>
+                            <td class="table-dark text-center" colspan="4">DATOS DEL SOLICITANTE</td>
                         </tr>
                         <tr>
                             <td class="table-dark">Nombre</td>
@@ -55,12 +55,63 @@
                         </tr>
                         <!-- Datos del equipo -->
                         <tr>
-                            <td colspan="4" class="table-dark">Datos del equipo</td>
+                            <td colspan="4" class="table-dark text-center">DATOS DEL EQUIPO</td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Marca</td>
+                            <td>{{ $equipo->marca }}</td>
+                            <td class="table-dark">Modelo</td>
+                            <td>{{ $equipo->modelo }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">No. Serie</td>
+                            <td>{{ $equipo->numeroSerie }}</td>
+                            <td class="table-dark">Clave inventarial</td>
+                            <td>{{ $equipo->claveInventaraial }}</td>
                         </tr>
                         <tr>
                             <td class="table-dark">Nombre del equipo</td>
                             <td></td>
                             <td class="table-dark">Grupo de trabajo</td>
+                            <td>{{ $computadora!=null ? $computadora->grupo_de_trabajo:'' }}</td>
+                        </tr>
+                        <!-- ESPECIFICACIONES TECNICAS-->
+                        <tr>
+                            <td colspan="4" class="table-dark text-center">ESPECIFICACIONES TECNICAS</td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Disco duro</td>
+                            <td>{{ $computadora!=null ? $computadora->discoDuro : '' }}</td>
+                            <td class="table-dark">Sistema operativo</td>
+                            <td>{{ $computadora!=null ? $computadora->sistemaOperativo : '' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">RAM</td>
+                            <td>{{ $computadora!=null ? $computadora->ram : '' }}</td>
+                            <td class="table-dark">Procesador</td>
+                            <td>{{ $computadora!=null ? $computadora->procesador : '' }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Observaciones</td>
+                            <td>{{ $solicitud->observaciones }}</td>
+                            <td class="table-dark">Tipo de reparación</td>
+                            <td>{{ $tipoReparacion->tipoReparacion }}</td>
+                        </tr>
+                        <!-- DATOS DEL SOPORTE -->
+                        <tr>
+                            <td class="table-dark text-center" colspan="4">DATOS DEL SOPORTE</td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Empleado de soporte</td>
+                            <td colspan="3">{{ $soporte->nombre.' '.$soporte->apellidoPat.' '.$soporte->apellidoMat }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Diagnóstico</td>
+                            <td colspan="3">{{ $solicitud->diagnostico }}</td>
+                        </tr>
+                        <tr>
+                            <td class="table-dark">Carpeta respaldada</td>
+                            <td colspan="3">{{ $solicitud->respaldo }}</td>
                         </tr>
                     </tbody>
                 </table>

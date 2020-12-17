@@ -261,10 +261,12 @@ class SolicitudController extends Controller
 
     public function generarRecibo($folio){
         $solicitud = Solicitud::where('folio',$folio)->first();
-        $tipoSolicitud = Cat_Tipo_Solicitud::find($solicitud->tipoSolicitud);
         $empleado = Empleado::find($solicitud->idEmpleado);
         $area = Area::find($empleado->idArea);
+
         $tipoServicio = Cat_TipoServicio::find($solicitud->tipoServicio);
+        $tipoReparacion = CatTipoReparacion::find($solicitud->tipoReparacion);
+        $tipoSolicitud = Cat_Tipo_Solicitud::find($solicitud->tipoSolicitud);
 
         $computadora = null;
         $equSol = EquipoSolicitud::where('idSolicitud',$solicitud->id)->first();
@@ -274,20 +276,15 @@ class SolicitudController extends Controller
             $computadora = Computadora::where('equipo_numeroSerie',$equipo->numeroSerie)->first();
         }
 
+        $solSop = SolicitudSoporte::where('idSolicitud',$solicitud->id)->first();
+        $soporte = Empleado::find($solSop->idSoporte);
+
         return view('solicitudes.recibo',compact('solicitud','tipoSolicitud','empleado','area',
-                    'tipoServicio','equipo'));
+                    'tipoServicio','equipo','computadora','tipoReparacion','soporte'));
 
         /*
         $id = request('idSol');
         $solicitud = Solicitud::find($id);
-
-        $tipoReparacion = CatTipoReparacion::find($solicitud->tipoReparacion);
-
-        $solSop = SolicitudSoporte::where('idSolicitud',$id)->first();
-        $soporte = Empleado::find($solSop->idSoporte);
-
-        
-        
 
         return response()->json(['solicitud'=>$solicitud,'tipoSol'=>$tipoSolicitud,'empleado'=>$empleado,
                                 'area'=>$area,'tipoSer'=>$tipoServicio]);*/
