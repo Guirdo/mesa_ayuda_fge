@@ -1,32 +1,39 @@
-$(document).ready(function(){ 
-    $(document).on('click','#tomar',function(event){
-        var valores=[];
-        // Obtenemos todos los valores contenidos en los <td> de la fila
-        // seleccionada
-        $(this).parents("tr").find("td").each(function(){
-            valores.push($(this).html());
-        });
-        var idSolicitud = valores[5];
+/*$(document).ready(function(){ 
+    
+});
+*/
 
-        //AJAX
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-   
+$(document).on('click','#tomar',function(event){
+    var valores=[];
+    // Obtenemos todos los valores contenidos en los <td> de la fila
+    // seleccionada
+    
+    var idSolicitud = $('#idSol').val();
 
-        $.ajax ({
-            method: "POST",
-            url: '/solicitudesSoporte/asignar',
-            data: {idSolicitud},
-            
-        });
-        
-
-        
-
-
-
+    //AJAX
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
     });
+
+
+    $.ajax ({
+        method: "POST",
+        url: '/solicitudesSoporte/asignar',
+        data: {idSolicitud},
+        success: function(response) {
+            location.reload();
+        },
+        error: function(response){
+            console.log(response);
+        }
+        
+    });
+    
+
+    
+
+
+
 });

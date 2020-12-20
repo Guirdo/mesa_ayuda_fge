@@ -8,6 +8,7 @@ use App\Empleado;
 use App\Region;
 use App\Adscripcion;
 use App\Area;
+use DB;
 
 class EmpleadoController extends Controller
 {
@@ -124,9 +125,16 @@ class EmpleadoController extends Controller
     }
 
     public function buscarEmpleados(Request $request){
-        $empleados = Empleado::where('apellidoPat',request('apellidoPat'))->get();
-        #$empleados = Empleado::all();
-        return response()->json(['empleados'=>$empleados]);
+        $apellidoPat = request('apePat');
+        $empleados = Empleado::where('apellidoPat','like',$apellidoPat.'%')->get();
+
+        $areasEmp = [];
+        foreach($empleados as $emp){
+            $area = Area::find($emp->idArea);
+            array_push($areasEmp,['area'=>$area->area]);
+        }
+
+        return response()->json(['empleados'=>$empleados,'areas'=>$areasEmp]);
     }
 
 }

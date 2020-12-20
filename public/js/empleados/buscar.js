@@ -15,12 +15,16 @@ $(document).on('click','#btnBuscar',function(event){
              dataType: 'json',
              success: function(response){
                 var empleados = response.empleados;
+                var areas = response.areas;
                 
-                console.log(empleados);
-
+                $('#tbEmpleados tr').remove();
+                
                 $.each(empleados, function(i,v){
-                    $('#tbCuerpo').append('<tr><td><input type="radio" name="emp" value="'+v.id+'">'+
-                    '</td><td>'+v.nombre+' '+v.apellidoPat+' '+v.apellidoMat+'</td></tr>');
+                    $('#tbEmpleados').append('<tr><td><input type="radio" name="emp" value="'+v.id+'">'+
+                    '</td><td>'+v.nombre+' '+v.apellidoPat+' '+v.apellidoMat+'</td>'+
+                    '<td>'+v.telefonoPersonal+'</td>'+'<td>'+v.email+'</td>'+
+                    '<td>'+areas[i].area+'</td>'+
+                    '</tr>');
                 });
                 
              },

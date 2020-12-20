@@ -21,7 +21,7 @@ class CreateEmpleadosTable extends Migration
             $table->string('email',255);
             $table->string('telefonoPersonal',10)->nullable();
             $table->string('extencionTelOf',4)->nullable();
-            $table->string('CUIP',10);
+            $table->string('CUIP',10)->nullable();
             $table->bigInteger('idArea');
             $table->timestamp('FUA');
         });
