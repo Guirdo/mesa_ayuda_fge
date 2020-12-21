@@ -18,9 +18,7 @@
                         <a href="{{ route('solicitudes.create') }}" class="btn btn-primary">Registrar solicitud</a>
                     </div>
 
-                    <div>
-                        <a href="{{ route('solicitudes.mostrarTerminados') }}" class="btn btn-danger">Ver terminados y cancelados</a>
-                    </div>
+                    
                     <br>
                     <label for="">Solicitudes sin atender</label>
                     <div class="my-custom-scrollbar table-wrapper-scroll-y">
@@ -35,12 +33,12 @@
                         </thead>
 
                         <tbody>
-                            @foreach ($solicitudes as $solicitud)
+                            @foreach ($solicitudesT as $solicitud)
                             <tr>
                                 <td>{{ $solicitud->folio }}</td>
                                 <td>{{ $solicitud->fechaRegistro }}</td>
-                                <td><span class="text-danger">SIN ATENDER</span></td>
-                                <td><a href="{{ route('solicitudes.show',$solicitud) }}">VER</a></td>
+                                <td><span class="text-danger">TERMINADO</span></td>
+                                <td><a href="{{ route('solicitudes.recibo',$solicitud->folio) }}">VER</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -60,12 +58,12 @@
                         </thead>
 
                         <tbody>
-                            @foreach ($solicitudesA as $solicitud)
+                            @foreach ($solicitudesC as $solicitud)
                             <tr>
                                 <td>{{ $solicitud->folio }}</td>
                                 <td>{{ $solicitud->fechaRegistro }}</td>
-                                <td><span class="text-primary">ATENDIENDO</span></td>
-                                <td><a href="{{ route('solicitudes.show',$solicitud) }}">VER</a></td>
+                                <td><span class="text-primary">CANCELADO</span></td>
+                                <td><a href="{{ route('solicitudes.recibo',$solicitud->folio) }}">VER</a></td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -41,6 +41,16 @@
                                 <h5>CUIP</h5>
                                 <p>{{ $empleado->CUIP }}</p>
                             </div>
+
+                            <div class="col">
+                                <h5>Area</h5>
+                                <p>{{ $area->area }}</p>
+                            </div>
+                            
+                            <div class="col">
+                                <h5>Estatus</h5>
+                                <p>{{ $estatus->estatus }}</p>
+                            </div>
                         </div>
 
                         <div class="col">

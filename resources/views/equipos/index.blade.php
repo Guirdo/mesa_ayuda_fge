@@ -14,14 +14,6 @@
                         <a href="{{ route('equipos.create') }}" class="btn btn-primary">Agregar Equipo</a>
                     </div>
 
-                    <form action="" class="form-inline mb-3">
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="" id="" placeholder="Buscar">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Buscar</button>
-                    </form>
-
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>

@@ -182,27 +182,127 @@ class AdscripcionSeeder extends Seeder
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'A.M.P. ADSC. AL JDO.PENAL DEL DTO. JUD. DE GUERRERO',
             'idRegion' => '1',
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'CHILAPA - AGENCIA CENTRAL',
             'idRegion' => '1',
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'A.M.P. ADSC. AL JDO.PENAL DEL DTO. JUD. DE ALVAREZ',
             'idRegion' => '1',
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'DIRECCION GENERAL DE JUSTICIA ALTERNATIVA EN MATERIA PENAL',
             'idRegion' => '1',
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'COORDINACION GENERAL DE ASESORES DEL FISCAL',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'DIRECCIÓN GENERAL DEL ORGANO IMPLEMENTADOR',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'ALERTA AMBER',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'CHILPANCINGO - AGENCIA ESPECIALIZADA EN DE DELITOS DE DESPOJO',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'VICEFISCALIA DE INVESTIGACION',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'DIRECCIÓN GENERAL DE ATENCION A VICTIMAS Y OFENDIDOS',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'FISCALIA ESPECIALIZADA EN FEMINICIDIOS',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'FISCALIA ESPECIALIZADA EN COMBATE A LA CORRUPCION',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'FISCALIA GENERAL DEL ESTADO',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'VICEFISCALIA DE CONTROL, EVALUACION Y APOYO A LA PROCURACION DE JUSTICIA',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'DIRECCIÓN GENERAL DE RECURSOS HUMANOS Y DESARROLLO DE PERSONAL',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'FISCALIA ESP. EN MATERIA DE DESAPARICIÓN FORZADA Y BUSQ. DE PERSONAS DESAPARECIDAS ',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'UNIDAD ESPECIALIZADA CONTRA LA TRATA DE PERSONAS',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'DIRECCIÓN GENERAL DE ATENCION CIUDADANA',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'DIRECCIÓN GENERAL DE CONTROL PATRIMONIAL',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'CENTRO DE JUSTICIA PARA MUJERES',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'DIRECCIÓN GENERAL DE APOYO TECNICO Y LOGISTICO',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'FISCALIA ESPECIALIZADA EN ROBO DE VEHICULOS',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'FISCALIA ESPECIALIZADA PARA LA ATENCION DE DELITOS EN CONTRA DE PERIODISTAS',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'FISCALIA ESPECIALIZADA EN COMBATE AL SECUESTRO',
+            'idRegion' => '1',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'UNIDAD DE TRANSPARENCIA Y ACCESO A LA INFORMACIÓN PÚBLICA',
             'idRegion' => '1',
         ]);
 
@@ -291,7 +391,22 @@ class AdscripcionSeeder extends Seeder
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'ACAPULCO - AGENCIA ESPECIALIZADA EN ROBO DE VEHICULOS',
+            'idRegion' => '2',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'ACAPULCO - AGENCIA SECTOR JARDIN',
+            'idRegion' => '2',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'COORDINACION DE LA POLICIA MINISTERIAL EN MOZIMBA',
+            'idRegion' => '2',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'COORD. REGIONAL ACAPULCO',
             'idRegion' => '2',
         ]);
 
@@ -320,12 +435,32 @@ class AdscripcionSeeder extends Seeder
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'IGUALA - UNIDAD DE INV. ESP. EN DELITOS SEXUALES Y VIOLENCIA FAMILIAR',
             'idRegion' => '3',
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'COORDINACION REGIONAL DE PERICIALES - IGUALA',
+            'idRegion' => '3',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'TELOLOAPAN - AGENCIA CENTRAL',
+            'idRegion' => '3',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'A.M.P. ADSC. AL JDO.PENAL DEL DTO. JUD. DE ALDAMA',
+            'idRegion' => '3',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'A.M.P. ADSC. AL JDO.PENAL DEL DTO. JUD. DE ALARCON',
+            'idRegion' => '3',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'COORDINACION DE LA POLICIA MINISTERIAL EN TAXCO',
             'idRegion' => '3',
         ]);
 
@@ -344,12 +479,22 @@ class AdscripcionSeeder extends Seeder
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'COORDINACIÓN REGIONAL - COYUCA DE CATALAN',
             'idRegion' => '4',
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'ARCELIA - AGENCIA CENTRAL',
+            'idRegion' => '4',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'A.M.P. ADSCRITA AL JDO. PENAL DEL DTO. JUD. DE CUAUHTEMOC',
+            'idRegion' => '4',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'COYUCA DE CATALAN - AGENCIA CENTRAL',
             'idRegion' => '4',
         ]);
 
@@ -373,7 +518,27 @@ class AdscripcionSeeder extends Seeder
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'A.M.P. ADSC. AL JDO.PENAL DEL DTO. JUD. DE ALLENDE',
+            'idRegion' => '5',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'A.M.P. ADSC. AL JDO.PENAL DEL DTO. JUD. DE ABASOLO',
+            'idRegion' => '5',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'OMETEPEC - AGENCIA CENTRAL',
+            'idRegion' => '5',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'FISCALIA REGIONAL -  COSTA CHICA',
+            'idRegion' => '5',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'OMETEPEC - UNIDAD DE INV. ESP. EN DELITOS SEXUALES Y VIOLENCIA FAMILIAR',
             'idRegion' => '5',
         ]);
 
@@ -422,12 +587,17 @@ class AdscripcionSeeder extends Seeder
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'LA UNION - AGENCIA CENTRAL',
             'idRegion' => '6',
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'A.M.P. ADSC. AL JDO.PENAL DEL DTO. JUD. DE GALEANA',
+            'idRegion' => '6',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'FISCALIA REGIONAL -  COSTA GRANDE',
             'idRegion' => '6',
         ]);
 
@@ -441,13 +611,34 @@ class AdscripcionSeeder extends Seeder
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'COORDINACIÓN REGIONAL DE PERICIALES - TLAPA',
             'idRegion' => '7',
         ]);
 
         DB::table('adscripcions')->insert([
-            'adscripcion' => '',
+            'adscripcion' => 'TLAPA - AGENCIA CENTRAL',
             'idRegion' => '7',
         ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'A.M.P. ADSC. AL JDO.PENAL DEL DTO. JUD. DE MORELOS',
+            'idRegion' => '7',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'FISCALIA ESPECIALIZADA PARA LA ATENCION DE PUEBLOS INDIGENAS',
+            'idRegion' => '7',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'MALINALTEC - AGENCIA CENTRAL',
+            'idRegion' => '7',
+        ]);
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'TLAPA - UNIDAD DE INV. ESP. EN DELITOS SEXUALES Y VIOLENCIA FAMILIAR',
+            'idRegion' => '7',
+        ]);
+
     }
 }

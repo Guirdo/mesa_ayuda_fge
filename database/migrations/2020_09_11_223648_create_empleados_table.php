@@ -23,6 +23,7 @@ class CreateEmpleadosTable extends Migration
             $table->string('extencionTelOf',4)->nullable();
             $table->string('CUIP',10)->nullable();
             $table->bigInteger('idArea');
+            $table->bigInteger('idEstatus')->default(1);
             $table->timestamp('FUA');
         });
     }

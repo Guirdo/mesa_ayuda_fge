@@ -40,7 +40,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="" class="col-sm-2">CUIP:</label>
+                            <label for="" class="col-sm-2">Empleado</label>
                             <div class="col">
                                 <input type="text" name="apellidoPat" id="apellidoPat" class="form-control">
                             </div>

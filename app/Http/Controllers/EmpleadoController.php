@@ -8,6 +8,7 @@ use App\Empleado;
 use App\Region;
 use App\Adscripcion;
 use App\Area;
+use App\CatEstatus;
 use DB;
 
 class EmpleadoController extends Controller
@@ -25,23 +26,38 @@ class EmpleadoController extends Controller
     public function index()
     {
         $empleados = Empleado::all();
+        $areas = [];
 
-        return view('empleados.index', compact('empleados'));
+        foreach($empleados as $emp){
+            $area = Area::find($emp->idArea);
+            array_push($areas,$area->area);
+        }
+
+        return view('empleados.index', compact('empleados','areas'));
     }
 
     public function show($id)
     {
         $empleado = Empleado::find($id);
+        $area = Area::find($empleado->idArea);
+        $estatus = CatEstatus::find($empleado->idEstatus);
 
-        return view('empleados.show', compact('empleado'));
+        return view('empleados.show', compact('empleado','area','estatus'));
     }
 
     public function edit($id)
     {
         $empleado = Empleado::find($id);
-        $adscripciones = Adscripcion::all();
+        $areas = Area::all();
+        $estatus = CatEstatus::all();
 
-        return view('empleados.edit', compact('empleado','adscripciones'));
+        $idAdscripcion = Area::find($empleado->idArea)->idAdscripcion;
+        $idRegion = Adscripcion::find($idAdscripcion)->idRegion;
+        $adscripciones = Adscripcion::all()->where('idRegion',$idRegion);
+        $regiones = Region::all();
+
+        return view('empleados.edit', compact('empleado','areas','estatus',
+                                        'adscripciones','regiones','idAdscripcion','idRegion'));
     }
 
     public function update(Request $request,$id)
@@ -54,6 +70,8 @@ class EmpleadoController extends Controller
         $empleado->telefonoPersonal = request('telefonoPersonal');
         $empleado->extencionTelOf = request('extencionTelOf');
         $empleado->CUIP = request('CUIP');
+        $empleado->idArea = request('area');
+        $empleado->idEstatus = request('estatus');
 
         $empleado->save();
 

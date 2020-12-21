@@ -52,14 +52,14 @@ class SolicitudController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO: Contar el numero de solicitudes en un año
+        $idEmpleado = request('emp');
         $numero = Solicitud::where('FUA','>',date('Y').'-01-01 00:00:00')
                             ->where('FUA','<',date('Y').'-12-31 23:59:59')->count();
         $numero = $numero+1;
 
         $solicitud = new Solicitud;
 
-        $empleado = Empleado::where('CUIP',request('CUIP'))->first();
+        $empleado = Empleado::find($idEmpleado);
 
         $solicitud->folio = self::crearFolio($numero);
         $solicitud->tipoSolicitud = request('tipoSolicitud');
@@ -96,7 +96,9 @@ class SolicitudController extends Controller
             foreach($usuarios as $user){
                 if($user['idTipoUsuario'] == 2){
                     $emp = Empleado::find($user['idEmpleado']);
-                    array_push($soporte,$emp);
+                    if($emp->idEstatus == 1){
+                        array_push($soporte,$emp);
+                    }
                 }
             }
         }else{
@@ -118,6 +120,13 @@ class SolicitudController extends Controller
         return view('solicitudes.show',compact('empleado','solicitud','tipoSolicitud','tipoReparacion'
                                                 ,'tipoServicio','solSop','soporte','equipo'
                                                 ,'tipoEquipo','computadora'));
+    }
+
+    public function mostrarTerminados(){
+        $solicitudesT = Solicitud::where('idEstado',3)->get();
+        $solicitudesC = Solicitud::where('idEstado',4)->get();
+
+        return view('solicitudes.terminados',compact('solicitudesT','solicitudesC'));
     }
 
     /**
@@ -204,14 +213,16 @@ class SolicitudController extends Controller
     }
 
     private function crearFolio($numero){
-        if($numero/1000 >= 1){
+        if($numero/10000 >= 1){
             return 'FGE-'.$numero.'-'.date('Y');
-        }else if($numero/100 >= 1){
+        }else if($numero/1000 >= 1){
             return 'FGE-0'.$numero.'-'.date('Y');
-        }else if($numero/10 >= 1){
+        }else if($numero/100 >= 1){
             return 'FGE-00'.$numero.'-'.date('Y');
-        }else{
+        }else if($numero/10 >= 1){
             return 'FGE-000'.$numero.'-'.date('Y');
+        }else{
+            return 'FGE-0000'.$numero.'-'.date('Y');
         }
     }
 

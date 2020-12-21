@@ -45,14 +45,53 @@
                         <div class="form-group">
                             <label for="">CUIP</label>
                             <input class="form-control" type="text" name="CUIP" value="{{ $empleado->CUIP }}">
+                        </div> 
+
+                        <div class="form-group">
+                            <label for="">Region</label>
+                            <select class="form-control" name="region" id="region">
+                                @foreach($regiones as $region)
+                                    @if($region->id == $idRegion)
+                                    <option value="{{ $region->id }}" selected="selected">{{ $region->region }}</option>
+                                    @else
+                                    <option value="{{ $region->id }}">{{ $region->region }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group">
                             <label for="">Adscripcion</label>
-                            <select name="adscripcion" class="form-control">
+                            <select class="form-control" name="adscripcion" id="adscripcion">
                             @foreach($adscripciones as $adscripcion)
+                                @if($adscripcion->id == $idAdscripcion)
+                                <option value="{{ $adscripcion->id }}" selected="selected">{{ $adscripcion->adscripcion }}</option>
+                                @else
                                 <option value="{{ $adscripcion->id }}">{{ $adscripcion->adscripcion }}</option>
+                                @endif
                             @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Area</label>
+                            <select name="area" id="area" class="form-control">
+                            @foreach($areas as $area)
+                                @if($area->id == $empleado->idArea)
+                                <option value="{{ $area->id }}" selected="selected">{{ $area->area }}</option>
+                                @else
+                                <option value="{{ $area->id }}">{{ $area->area }}</option>
+                                @endif
+                            @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Estatus</label>
+                            <select name="estatus" class="form-control">
+                                @foreach($estatus as $est)
+                                <option value="{{ $est->id }}">{{ $est->estatus }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -66,4 +105,8 @@
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/empleados/index.js') }}"></script>
 @endsection
