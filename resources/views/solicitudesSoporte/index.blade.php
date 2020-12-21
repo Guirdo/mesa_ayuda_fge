@@ -41,8 +41,10 @@
                                 <td>{{ $solicitud->fechaRegistro }}</td>
                                 <td><span class="text-danger">SIN ATENDER</span></td>
                                 <td><a href="{{ route('solicitudes.show',$solicitud) }}">VER</a></td>
-                                <td><button  class="btn btn-primary" name='tomar' id='tomar'>Tomar solicitud</a></td>
-                                <td style="display:none;">{{ $solicitud->id }} </td>
+                                <td>
+                                    <button class="btn btn-primary" name="tomar" id="tomar">Tomar solicitud</button>
+                                    <input type="hidden" name="idSol" id="idSol" value="{{ $solicitud->id }}">
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -68,7 +70,6 @@
                                 <td>{{ $solicitud['fechaRegistro'] }}</td>
                                 <td><span class="text-primary">ATENDIENDO</span></td>
                                 <td><a href="{{ route('solicitudesSoporte.show',$solicitud['id']) }}">VER</a></td>
-                                
                             </tr>
                             @endforeach
                             @endif

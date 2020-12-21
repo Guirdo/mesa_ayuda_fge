@@ -74,7 +74,7 @@ class soporteSolicitudController extends Controller
 
         $solicitud->save();
 
-        return redirect()->route('solicitudes.index');
+        return redirect()->route('solicitudesSoporte.index');
     }
 
     /**

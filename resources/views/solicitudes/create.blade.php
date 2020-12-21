@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link href="{{ asset('css/estilo.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -9,7 +13,11 @@
 
                 <div class="card-body">
                     
+                    @if(Auth::user()->idTipoUsuario == 1)
                     <form action="{{ route('solicitudes.store') }}" method="POST">
+                    @else
+                    <form action="{{ route('solicitudesSoporte.store') }}" method="POST">
+                    @endif
                     @csrf
                         <div class="row">
                             <div class="col form-group">
@@ -34,32 +42,25 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-2">CUIP:</label>
                             <div class="col">
-                                <input type="text" name="CUIP" id="CUIP" class="form-control">
+                                <input type="text" name="apellidoPat" id="apellidoPat" class="form-control">
                             </div>
                             <button class="btn btn-success" id="btnBuscar">Buscar</button>
                             <a href="{{ route('empleados.create') }}" class="btn btn-warning">Agregar empleado</a>
                         </div>
 
-                        <div class="row">
-                            <div class="col form-group">
-                                <label for="" class="">Nombre:</label>
-                                <input type="text" id="nombre" class="form-control" readonly>
-                            </div>
-                            <div class="col form-group">
-                                <label for="" class="">Telefono:</label>
-                                <input type="text" id="telefono" class="form-control" readonly>
-                            </div>                        
-                        </div>
-
-                        <div class="row">
-                            <div class="col form-group">
-                                <label for="" class="">Email:</label>
-                                <input type="text" id="email" class="form-control" readonly>
-                            </div>
-                            <div class="col form-group">
-                                <label for="" class="">Area:</label>
-                                <input type="text" id="area" class="form-control" readonly>
-                            </div>                        
+                        <div class="my-custom-scrollbar table-wrapper-scroll-y">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Seleccionar</th>
+                                        <th>Nombre</th>
+                                        <th>Telefono</th>
+                                        <th>Email</th>
+                                        <th>Area</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbEmpleados"></tbody>
+                            </table>
                         </div>
 
                         <div class="form-group">
@@ -87,5 +88,5 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/empleados/cuip.js') }}"></script>
+    <script src="{{ asset('js/empleados/buscar.js') }}"></script>
 @endsection
