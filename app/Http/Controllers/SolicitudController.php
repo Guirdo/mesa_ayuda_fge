@@ -229,8 +229,8 @@ class SolicitudController extends Controller
     public function terminarSolicitud(Request $request){
         $solicitud = Solicitud::find(request('idSol'));
 
-        //$solicitud->idEstado = 3;
-        //  $solicitud->save();
+        $solicitud->idEstado = 3;
+        $solicitud->save();
 
         return redirect()->route('solicitudes.recibo',$solicitud->folio);
     }

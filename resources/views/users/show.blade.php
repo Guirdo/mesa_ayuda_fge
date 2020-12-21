@@ -24,7 +24,13 @@
 
                             <div class="col">
                                 <h5>Tipo</h5>
-                                <p>{{ $tipoUsuario->tipoUsuario }}</p>
+                                <p>
+                                    @if($usuario->idTipoUsuario == 1)
+                                        ADMINISTRADOR
+                                    @else
+                                        SOPORTE
+                                    @endif
+                                </p>
                             </div>
                         </div>
 

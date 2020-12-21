@@ -25,13 +25,21 @@
                         </thead>
 
                         <tbody>
+                            @php($i=0)
                             @foreach ($usuarios as $usuario)
                             <tr>
                                 <td>{{ $usuario->id }}</td>
                                 <td>{{ $usuario->email }}</td>
-                                <td>{{ $tipoUsuario[$usuario->idTipoUsuario-1]->tipoUsuario }}</td>
+                                <td>
+                                    @if($usuario->idTipoUsuario == 1)
+                                        ADMINISTRADOR
+                                    @else
+                                        SOPORTE
+                                    @endif
+                                </td>
                                 <td><a href="{{ route('users.show',$usuario->id) }}">VER</a></td>
                             </tr>
+                            @php($i = $i+1)
                             @endforeach
                         </tbody>
                     </table>

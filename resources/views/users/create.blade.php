@@ -38,7 +38,7 @@
                                         <tbody>
                                             @foreach($soporte as $sop)
                                             <tr>
-                                                <td><input type="radio" name="sop" value="{{ $sop['id'] }}" class="form-control"></td>
+                                                <td><input type="radio" name="sop" value="{{ $sop->id }}" class="form-control"></td>
                                                 <td>{{ $sop['nombre'].' '.$sop['apellidoPat'].' '.$sop['apellidoMat'] }}</td>
                                             </tr>
                                             @endforeach

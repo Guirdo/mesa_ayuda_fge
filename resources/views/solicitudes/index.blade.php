@@ -18,9 +18,6 @@
                         <a href="{{ route('solicitudes.create') }}" class="btn btn-primary">Registrar solicitud</a>
                     </div>
 
-                    <div>
-                        <a href="{{ route('solicitudes.mostrarTerminados') }}" class="btn btn-danger">Ver terminados y cancelados</a>
-                    </div>
                     <br>
                     <label for="">Solicitudes sin atender</label>
                     <div class="my-custom-scrollbar table-wrapper-scroll-y">
