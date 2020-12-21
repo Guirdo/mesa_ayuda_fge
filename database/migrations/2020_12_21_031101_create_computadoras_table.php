@@ -16,6 +16,7 @@ class CreateComputadorasTable extends Migration
         Schema::create('computadoras', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('equipo_numeroSerie');
+            $table->String('nombre_computadora',45);
             $table->String('grupo_de_trabajo',45);
             $table->String('discoDuro',30);
             $table->String('sistemaOperativo',45);

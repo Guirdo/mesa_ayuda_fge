@@ -51,7 +51,8 @@ $(document).ready(function(){
                                  </select>
                             </div>
                         </div>
-                        <div id="editData"></div>
+                        
+                        
                         <a href="{{ route('equipos.show',$equipos->id) }}" class="btn btn-secondary">Regresar</a>
                         <button type="submit" class="btn btn-warning">Editar</button>
                     </form>

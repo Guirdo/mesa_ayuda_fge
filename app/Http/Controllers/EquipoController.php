@@ -56,6 +56,7 @@ class EquipoController extends Controller
         if($valida==73){
             $computadora = new Computadora;
             $computadora->equipo_numeroSerie= request('numeroSerie');
+            $computadora->nombre_computadora= request('nombre');
             $computadora->grupo_de_trabajo = request('grupodetrabajo');
             $computadora->discoDuro = request('discoduro');
             $computadora->sistemaOperativo = request('memoria');
@@ -115,7 +116,6 @@ class EquipoController extends Controller
         $equipo->numeroSerie = request('numeroSerie');
         $equipo->claveInventarial = request('claveInventarial');
         $equipo->idTipoEquipo = request('tipoEquipo');
-
         $equipo->save();
 
         return redirect()->route('equipos.show', $id);
