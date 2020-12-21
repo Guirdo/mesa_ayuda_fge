@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Contraseña</label>
+                            <label for="">Tipo usuario</label>
                             <select class="form-control" name="tipoUsuario" id="">
                                 @foreach($tipoUsuario as $tipo)
                                 <option value="{{ $tipo->id }}">{{ $tipo->tipoUsuario }}</option>
