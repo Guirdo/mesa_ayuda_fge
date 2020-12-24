@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/css/bootstrap-switch-button.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap-switch-button@1.1.0/dist/bootstrap-switch-button.min.js"></script>
 
 <div class="container">
     <div class="row justify-content-center">
@@ -29,6 +31,7 @@
                                 <td scope="col">ID</td>
                                 <td scope="col">Correo</td>
                                 <td scope="col">Tipo</td>
+                                <td scope="col">Estatus</td>
                                 <td scope="col">--</td>
                             </tr>
                         </thead>
@@ -39,6 +42,7 @@
                                 <td>{{ $usuario->id }}</td>
                                 <td>{{ $usuario->email }}</td>
                                 <td>{{ $tipoUsuario[$usuario->idTipoUsuario-1]->tipoUsuario }}</td>
+                                <td> <input type="checkbox" data-toggle="switchbutton" checked data-size="xs"  data-onlabel="Activo" data-offlabel="Inactivo" data-offstyle="danger" ></td>
                                 <td><a href="{{ route('users.show',$usuario->id) }}">VER</a></td>
                             </tr>
                             @endforeach
@@ -52,5 +56,6 @@
         </div>
     </div>
 </div>
+
 
 @endsection
