@@ -50,7 +50,10 @@ class UserController extends Controller
         $usuario->name = request('name');
         $usuario->email = request('email');
         if(request('password')!=''){
-            $contrasena = Hash::make(request('password'));
+            $usuario->contrasena = bcrypt(request('password'));
+            
+        }else{
+            dd(request('password'));
         }
 
         $usuario->save();
@@ -97,11 +100,10 @@ class UserController extends Controller
             'idEmpleado'=>request('sop'),
         ]);*/
         
-        
         $usuario = new User;
         $usuario->name = request('name');
         $usuario->email = request('email');
-        $usuario->password = Hash::make(request('password'));
+        $usuario->password = bcrypt(request('password'));
         $usuario->idTipoUsuario = request('tipoUsuario');
         $usuario->idEmpleado = request('sop');
 

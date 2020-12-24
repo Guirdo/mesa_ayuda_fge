@@ -26,7 +26,7 @@
 
                         <div class="form-group">
                             <label for="">Contraseña</label>
-                            <input class="form-control" type="password" name="contrasena" id="">
+                            <input class="form-control" type="password" name="password" id="">
                         </div>
                         <div class="my-custom-scrollbar table-wrapper-scroll-y">
                                 <label for="">Seleccione a empleado </label>
