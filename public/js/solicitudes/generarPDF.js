@@ -1,5 +1,5 @@
 $(document).on('click', '#btnImprimir', function (event) {
-    event.preventDefault();
+    //event.preventDefault();
 
     $.ajaxSetup({
         headers: {

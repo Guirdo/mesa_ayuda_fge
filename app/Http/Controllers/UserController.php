@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Cat_TipoUsuario;
 use App\Empleado;
+use DB;
 class UserController extends Controller
 {
     /**
@@ -22,9 +23,8 @@ class UserController extends Controller
     public function index()
     {
         $usuarios = User::all();
-        $tipoUsuario = Cat_TipoUsuario::all();
 
-        return view('users.index', compact('usuarios','tipoUsuario'));
+        return view('users.index', compact('usuarios'));
     }
 
     public function show($id)
@@ -49,9 +49,12 @@ class UserController extends Controller
 
         $usuario->name = request('name');
         $usuario->email = request('email');
-
-        //$contrasena = request('contrasena');
-        //dd($contrasena);
+        if(request('password')!=''){
+            $usuario->contrasena = bcrypt(request('password'));
+            
+        }else{
+            dd(request('password'));
+        }
 
         $usuario->save();
 
@@ -79,11 +82,28 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $usuario = new User;
+        /*
+        DB::table('users')->insert([
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => Hash::make(request('password')),
+            'idTipoUsuario' => request('tipoUsuario'),
+            'idEmpleado' => request('sop'),
+        ]);
+
+        /*
+        User::create([
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => Hash::make(request('password')),
+            'idTipoUsuario'=> request('tipoUsuario'),
+            'idEmpleado'=>request('sop'),
+        ]);*/
         
+        $usuario = new User;
         $usuario->name = request('name');
         $usuario->email = request('email');
-        $usuario->password = Hash::make(request('password'));
+        $usuario->password = bcrypt(request('password'));
         $usuario->idTipoUsuario = request('tipoUsuario');
         $usuario->idEmpleado = request('sop');
 

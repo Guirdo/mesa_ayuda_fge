@@ -37,6 +37,7 @@ Route::post('/solicitudes/guardarDiagnostico','SolicitudController@guardarDiagno
 Route::post('/solicitudes/terminar','SolicitudController@terminarSolicitud');
 Route::post('/solicitudes/posponer','SolicitudController@posponerSolicitud');
 Route::post('/solicitudes/generar','SolicitudController@generarPDF');
+Route::post('/solicitudes/mostrarTerminados','SolicitudController@mostrarTerminados')->name('solicitudes.mostrarTerminados');
 Route::get('/solicitudes/recibo/{folio}','SolicitudController@generarRecibo')->name('solicitudes.recibo');
 
 Route::resource('equipos', 'EquipoController');

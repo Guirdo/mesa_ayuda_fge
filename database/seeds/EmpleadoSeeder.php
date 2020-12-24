@@ -18,7 +18,8 @@ class EmpleadoSeeder extends Seeder
             'email'=>'fede.s.s@email.com',
             'telefonoPersonal'=>'7471121415',
             'CUIP' => '1234567890',
-            'idArea'=>'1',
+            'idArea'=>'15',
+            'idEstatus'=>'1',
         ]);
 
         DB::table('empleados')->insert([
@@ -28,7 +29,8 @@ class EmpleadoSeeder extends Seeder
             'email'=>'abe.r.s@email.com',
             'telefonoPersonal'=>'7471222324',
             'CUIP' => '1234567899',
-            'idArea'=>'1',
+            'idArea'=>'15',
+            'idEstatus'=>'1',
         ]);
 
         DB::table('empleados')->insert([
@@ -38,7 +40,8 @@ class EmpleadoSeeder extends Seeder
             'email'=>'dia.h.g@email.com',
             'telefonoPersonal'=>'7441454647',
             'CUIP' => 'GUHD060999',
-            'idArea'=>'1',
+            'idArea'=>'15',
+            'idEstatus'=>'1',
         ]);
 
         DB::table('empleados')->insert([
@@ -48,7 +51,8 @@ class EmpleadoSeeder extends Seeder
             'email'=>'hum.m.r@email.com',
             'telefonoPersonal'=>'7441898786',
             'CUIP' => 'ROMH010198',
-            'idArea'=>'1',
+            'idArea'=>'15',
+            'idEstatus'=>'1',
         ]);
     }
 }

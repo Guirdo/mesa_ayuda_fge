@@ -16,15 +16,6 @@
                         <a href="{{ route('users.create') }}" class="btn btn-primary">Agregar usuario</a>
                     </div>
 
-                    <form action="" class="form-inline mb-3">
-                        <div class="form-group">
-                            <label for=""></label>
-                            <input class="form-control" type="text" name="" id="" placeholder="Buscar">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Buscar</button>
-                    </form>
-
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
@@ -37,14 +28,25 @@
                         </thead>
 
                         <tbody>
+                            @php($i=0)
                             @foreach ($usuarios as $usuario)
                             <tr>
                                 <td>{{ $usuario->id }}</td>
                                 <td>{{ $usuario->email }}</td>
+
                                 <td>{{ $tipoUsuario[$usuario->idTipoUsuario-1]->tipoUsuario }}</td>
                                 <td> <input type="checkbox" data-toggle="switchbutton" checked data-size="xs"  data-onlabel="Activo" data-offlabel="Inactivo" data-offstyle="danger" ></td>
+
+                                <td>
+                                    @if($usuario->idTipoUsuario == 1)
+                                        ADMINISTRADOR
+                                    @else
+                                        SOPORTE
+                                    @endif
+                                </td>
                                 <td><a href="{{ route('users.show',$usuario->id) }}">VER</a></td>
                             </tr>
+                            @php($i = $i+1)
                             @endforeach
                         </tbody>
                     </table>
