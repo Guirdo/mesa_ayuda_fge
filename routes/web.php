@@ -45,3 +45,5 @@ Route::post('/equipos/buscarEquipo','EquipoController@buscarEquipo');
 
 Route::resource('solicitudesSoporte','soporteSolicitudController');
 Route::post('/solicitudesSoporte/asignar','soporteSolicitudController@asignarSoporte');
+Route::post('/usuarioEstatus/Estado','UserController@updateEstado');
+Route::post('/usuarioEstatus/Estadoinactivo','UserController@updateEstadoInactivo');
