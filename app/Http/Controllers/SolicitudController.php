@@ -15,7 +15,7 @@ use App\Cat_Tipo_Solicitud;
 use App\Cat_TipoServicio;
 use App\CatTipoReparacion;
 use Illuminate\Http\Request;
-
+use DB;
 class SolicitudController extends Controller
 {
     /**
@@ -70,7 +70,7 @@ class SolicitudController extends Controller
 
         $solicitud->save();
 
-        return redirect()->route('solicitudes.index');
+        return $this->asignarSoporte($solicitud);
     }
 
     /**
@@ -163,18 +163,32 @@ class SolicitudController extends Controller
         //
     }
 
-    public function asignarSoporte(Request $request){
-        $sol_sop = new SolicitudSoporte;
+    public function asignarSoporte($solicitudN){
+        $solicitudSoporte = new SolicitudSoporte;
+        $usuarios = User::join('empleados','empleados.id','=','users.idEmpleado')
+        ->select('users.id')-> where('empleados.idEstatus',1)-> where('users.idTipoUsuario',2)->get();
+      
+        if(count($usuarios)==1){
+           foreach($usuarios as $usuario){
+            $solicitudSoporte->idSoporte = $usuario->id;
+           }
+            $solicitudSoporte->idSolicitud = $solicitudN->id;
+            $solicitudSoporte->save();
+        }else{
+            $aleatorio = rand(1,count($usuarios));
+            $solicitudSoporte->idSoporte = $usuarios[$aleatorio]->id;
+            $solicitudSoporte->idSolicitud = $solicitudN->id;
+            $solicitudSoporte->save();
 
-        $sol_sop->idSoporte = request('sop');
-        $sol_sop->idSolicitud = request('sol');
-        $sol_sop->save();
+        }
+        
+        
 
-        $solicitud = Solicitud::find($sol_sop->idSolicitud);
+        $solicitud = Solicitud::find($solicitudN->id);
         $solicitud->idEstado = 2;
         $solicitud->save();
 
-        return redirect()->route('solicitudes.show',$solicitud->id);
+        return redirect()->route('solicitudes.index');
     }
 
     public function guardarEquipo(Request $request){
