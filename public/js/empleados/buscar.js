@@ -20,7 +20,7 @@ $(document).on('click','#btnBuscar',function(event){
                 $('#tbEmpleados tr').remove();
                 
                 $.each(empleados, function(i,v){
-                    $('#tbEmpleados').append('<tr><td><input type="radio" name="emp" value="'+v.id+'">'+
+                    $('#tbEmpleados').append('<tr><td><input type="radio" name="idEmpleado" value="'+v.id+'">'+
                     '</td><td>'+v.nombre+' '+v.apellidoPat+' '+v.apellidoMat+'</td>'+
                     '<td>'+v.telefonoPersonal+'</td>'+'<td>'+v.email+'</td>'+
                     '<td>'+areas[i].area+'</td>'+

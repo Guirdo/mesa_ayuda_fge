@@ -10,6 +10,16 @@
 
                 <div class="card-body">
 
+                @if($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form action="{{ route('equipos.store') }}" method="POST" >
                         @csrf
                         <div class="container row justify-content-between">

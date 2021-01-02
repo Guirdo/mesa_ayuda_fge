@@ -15,7 +15,7 @@ class CreateSolicitudsTable extends Migration
     {
         Schema::create('solicituds', function (Blueprint $table) {
             $table->id();
-            $table->string('folio',20);
+            $table->string('folio',18);
             $table->string('oficioRelacionado',45)->nullable();
             $table->text('descripcionFalla');
             $table->text('observaciones')->nullable();
@@ -28,6 +28,8 @@ class CreateSolicitudsTable extends Migration
             $table->bigInteger('idEstado')->default(1);
             $table->timestamp('FUA')->useCurrentOnUpdate();
             $table->timestamp('fechaRegistro')->useCurrent();
+            $table->timestamp('fechaTermino')->nullable();
+            $table->timestamp('fechaCancelacion')->nullable();
         });
     }
 

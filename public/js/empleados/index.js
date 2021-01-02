@@ -20,7 +20,7 @@ $(document).on('change','#region',function(event){
                 $('#adscripcion').append('<option value="'+v.id+'">'+v.nombre+'</option>');
              });
 
-             actualizarAreas(1);
+             actualizarAreas(datos[0].id);
          },
          error: function(response){
             console.log(response);
@@ -51,6 +51,7 @@ function actualizarAreas(idAds){
             $('#area').find('option').remove();
 
             var datos = response.areas;
+            console.log(datos);
             $(datos).each(function(i,v){
                $('#area').append('<option value="'+v.id+'">'+v.nombre+'</option>');
             });

@@ -311,6 +311,11 @@ class AdscripcionSeeder extends Seeder
          */
 
         DB::table('adscripcions')->insert([
+            'adscripcion' => 'SE DESCONOCE',
+            'idRegion' => '2',
+        ]);
+
+        DB::table('adscripcions')->insert([
             'adscripcion' => 'ACAPULCO - AGENCIA SECTOR GARITA',
             'idRegion' => '2',
         ]);
@@ -415,6 +420,11 @@ class AdscripcionSeeder extends Seeder
          */
 
         DB::table('adscripcions')->insert([
+            'adscripcion' => 'SE DESCONOCE',
+            'idRegion' => '3',
+        ]);
+
+        DB::table('adscripcions')->insert([
             'adscripcion' => 'A.M.P. ADSCRITA A LA TRA. SALA PENAL DEL T.S.J. DE IGUALA',
             'idRegion' => '3',
         ]);
@@ -469,6 +479,11 @@ class AdscripcionSeeder extends Seeder
          */
 
         DB::table('adscripcions')->insert([
+            'adscripcion' => 'SE DESCONOCE',
+            'idRegion' => '4',
+        ]);
+
+        DB::table('adscripcions')->insert([
             'adscripcion' => 'COYUCA DE CATALAN - UNIDAD DE INV. ESP. EN DELITOS SEXUALES Y VIOLENCIA FAMILIAR',
             'idRegion' => '4',
         ]);
@@ -501,6 +516,11 @@ class AdscripcionSeeder extends Seeder
         /**
          * Adscripciones de la region de Costa Chica
          */
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'SE DESCONOCE',
+            'idRegion' => '5',
+        ]);
 
         DB::table('adscripcions')->insert([
             'adscripcion' => 'AYUTLA - AGENCIA CENTRAL',
@@ -545,6 +565,11 @@ class AdscripcionSeeder extends Seeder
         /**
          * Adscripciones de la region de Costa Grande
          */
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'SE DESCONOCE',
+            'idRegion' => '6',
+        ]);
 
         DB::table('adscripcions')->insert([
             'adscripcion' => 'ZIHUATANEJO - AGENCIA CENTRAL',
@@ -604,6 +629,11 @@ class AdscripcionSeeder extends Seeder
         /**
          * Adscripciones de la region de la Montaña
          */
+
+        DB::table('adscripcions')->insert([
+            'adscripcion' => 'SE DESCONOCE',
+            'idRegion' => '7',
+        ]);
 
         DB::table('adscripcions')->insert([
             'adscripcion' => 'HUAMUXTITLAN - AGENCIA CENTRAL',

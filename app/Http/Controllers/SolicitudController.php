@@ -11,9 +11,12 @@ use App\EquipoSolicitud;
 use App\cat_tipo_equipo;
 use App\Empleado;
 use App\Area;
+use App\Adscripcion;
+use App\Region;
 use App\Cat_Tipo_Solicitud;
 use App\Cat_TipoServicio;
 use App\CatTipoReparacion;
+use App\Http\Requests\SolicitudStoreRequest;
 use Illuminate\Http\Request;
 
 class SolicitudController extends Controller
@@ -50,20 +53,15 @@ class SolicitudController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SolicitudStoreRequest $request)
     {
-        $idEmpleado = request('emp');
-        $numero = Solicitud::where('FUA','>',date('Y').'-01-01 00:00:00')
-                            ->where('FUA','<',date('Y').'-12-31 23:59:59')->count();
-        $numero = $numero+1;
-
+        $idEmpleado = request('idEmpleado');
+        $empleado = Empleado::find($idEmpleado);
         $solicitud = new Solicitud;
 
-        $empleado = Empleado::find($idEmpleado);
-
-        $solicitud->folio = self::crearFolio($numero);
+        $solicitud->folio = self::crearFolio($empleado->idArea);
         $solicitud->tipoSolicitud = request('tipoSolicitud');
-        $solicitud->oficioRelacionado = request('oficioRel');
+        $solicitud->oficioRelacionado = request('oficioRelacionado');
         $solicitud->idEmpleado = $empleado->id;
         $solicitud->tipoServicio = request('tipoServicio');
         $solicitud->descripcionFalla = request('descripcion');
@@ -212,17 +210,25 @@ class SolicitudController extends Controller
         return redirect()->route('solicitudes.show',$solicitud->id);
     }
 
-    private function crearFolio($numero){
+    private function crearFolio($idArea){
+        $numero = Solicitud::where('FUA','>',date('Y').'-01-01 00:00:00')
+                            ->where('FUA','<',date('Y').'-12-31 23:59:59')->count();
+        $numero = $numero+1;
+
+        $ads = Adscripcion::find($idArea);
+        $region = Region::find($ads->idRegion);
+        $siglas = $region->siglas;
+
         if($numero/10000 >= 1){
-            return 'FGE-'.$numero.'-'.date('Y');
+            return 'FGE-'.$siglas.'-'.$numero.'-'.date('Y');
         }else if($numero/1000 >= 1){
-            return 'FGE-0'.$numero.'-'.date('Y');
+            return 'FGE-'.$siglas.'-0'.$numero.'-'.date('Y');
         }else if($numero/100 >= 1){
-            return 'FGE-00'.$numero.'-'.date('Y');
+            return 'FGE-'.$siglas.'-00'.$numero.'-'.date('Y');
         }else if($numero/10 >= 1){
-            return 'FGE-000'.$numero.'-'.date('Y');
+            return 'FGE-'.$siglas.'-000'.$numero.'-'.date('Y');
         }else{
-            return 'FGE-0000'.$numero.'-'.date('Y');
+            return 'FGE-'.$siglas.'-0000'.$numero.'-'.date('Y');
         }
     }
 
@@ -230,6 +236,7 @@ class SolicitudController extends Controller
         $solicitud = Solicitud::find(request('idSol'));
 
         $solicitud->idEstado = 3;
+        $solicitud->fechaTermino = date('Y-m-d');
         $solicitud->save();
 
         return redirect()->route('solicitudes.recibo',$solicitud->folio);
@@ -239,6 +246,7 @@ class SolicitudController extends Controller
         $solicitud = Solicitud::find(request('idSol'));
 
         $solicitud->idEstado = 4;
+        $solicitud->fechaCancelacion = date('Y-m-d');
         $solicitud->save();
 
         return redirect()->route('solicitudes.index');

@@ -9,6 +9,8 @@ use App\Region;
 use App\Adscripcion;
 use App\Area;
 use App\CatEstatus;
+use App\Http\Requests\EmpleadoStoreRequest;
+use App\Http\Requests\EmpleadoUpdateRequest;
 use DB;
 
 class EmpleadoController extends Controller
@@ -60,7 +62,7 @@ class EmpleadoController extends Controller
                                         'adscripciones','regiones','idAdscripcion','idRegion'));
     }
 
-    public function update(Request $request,$id)
+    public function update(EmpleadoUpdateRequest $request,$id)
     {
         $empleado = Empleado::find($id);
 
@@ -80,13 +82,13 @@ class EmpleadoController extends Controller
 
     public function create(){
         $regiones = Region::all();
-        $adscripciones = Adscripcion::all();
-        $areas = Area::all();
+        $adscripciones = Adscripcion::where('idRegion',1)->get();
+        $areas = Area::where('idAdscripcion',1)->get();
 
         return view('empleados.create',compact('regiones','adscripciones','areas'));
     }
 
-    public function store(Request $request)
+    public function store(EmpleadoStoreRequest $request)
     {
         $empleado = new Empleado;
 

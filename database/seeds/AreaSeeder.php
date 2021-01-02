@@ -296,5 +296,40 @@ class AreaSeeder extends Seeder
             'idAdscripcion' => '47',
         ]);
 
+        DB::table('areas')->insert([
+            'area' => 'SE DESCONOCE',
+            'idAdscripcion' => '1',
+        ]);
+
+        DB::table('areas')->insert([
+            'area' => 'SE DESCONOCE',
+            'idAdscripcion' => '60',
+        ]);
+
+        DB::table('areas')->insert([
+            'area' => 'SE DESCONOCE',
+            'idAdscripcion' => '81',
+        ]);
+
+        DB::table('areas')->insert([
+            'area' => 'SE DESCONOCE',
+            'idAdscripcion' => '92',
+        ]);
+
+        DB::table('areas')->insert([
+            'area' => 'SE DESCONOCE',
+            'idAdscripcion' => '99',
+        ]);
+
+        DB::table('areas')->insert([
+            'area' => 'SE DESCONOCE',
+            'idAdscripcion' => '108',
+        ]);
+
+        DB::table('areas')->insert([
+            'area' => 'SE DESCONOCE',
+            'idAdscripcion' => '120',
+        ]);
+
     }
 }

@@ -12,19 +12,24 @@ class Cat_TipoServicioSeeder extends Seeder
     public function run()
     {
         DB::table('cat__tipo_servicios')->insert([
-            'tipoServicio' => 'Mantenimiento',
+            'tipoServicio' => 'SISTEMAS',
         ]);
 
         DB::table('cat__tipo_servicios')->insert([
-            'tipoServicio' => 'Soporte tecnico',
+            'tipoServicio' => 'TELEFONIA',
         ]);
 
         DB::table('cat__tipo_servicios')->insert([
-            'tipoServicio' => 'Redes',
+            'tipoServicio' => 'MANTENIMIENTO',
         ]);
 
         DB::table('cat__tipo_servicios')->insert([
-            'tipoServicio' => 'Sistemas',
+            'tipoServicio' => 'SOPORTE TECNICO',
         ]);
+
+        DB::table('cat__tipo_servicios')->insert([
+            'tipoServicio' => 'REDES',
+        ]);
+
     }
 }

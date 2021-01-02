@@ -12,6 +12,16 @@
                 <div class="card-header">{{ __('Registrar solicitud') }}</div>
 
                 <div class="card-body">
+
+                @if($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
                     
                     @if(Auth::user()->idTipoUsuario == 1)
                     <form action="{{ route('solicitudes.store') }}" method="POST">
@@ -31,7 +41,7 @@
 
                             <div class="col form-group">
                                 <label for="">Oficio relacionado</label>
-                                <input class="form-control" type="text" name="oficioRel">
+                                <input class="form-control" type="text" name="oficioRelacionado">
                             </div>
                         </div>
 

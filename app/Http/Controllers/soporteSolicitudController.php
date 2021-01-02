@@ -15,6 +15,7 @@ use App\Area;
 use App\Cat_Tipo_Solicitud;
 use App\Cat_TipoServicio;
 use App\CatTipoReparacion;
+use App\Http\Requests\SolicitudStoreRequest;
 use Illuminate\Http\Request;
 
 class soporteSolicitudController extends Controller
@@ -54,7 +55,7 @@ class soporteSolicitudController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SolicitudStoreRequest $request)
     {
         //TODO: Contar el numero de solicitudes en un año
         $numero = Solicitud::where('FUA','>',date('Y').'-01-01 00:00:00')

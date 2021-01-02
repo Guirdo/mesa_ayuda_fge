@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Equipo;
 use App\cat_tipo_equipo;
 use App\Computadora;
+use App\Http\Requests\EquipoStoreRequest;
+use App\Http\Requests\EquipoUpdateRequest;
 
 class EquipoController extends Controller
 {
@@ -41,7 +43,7 @@ class EquipoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EquipoStoreRequest $request)
     {
         $equipo = new Equipo;
 

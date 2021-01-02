@@ -16,6 +16,16 @@ $(document).ready(function(){
 
                 <div class="card-body">
 
+                @if($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                     <form action="{{ route('equipos.update',$equipos->id) }}" method="POST">
                         @csrf
                         {{ method_field('PUT') }}

@@ -16,6 +16,7 @@ class CreateRegionsTable extends Migration
         Schema::create('regions', function (Blueprint $table) {
             $table->id();
             $table->string('region',100);
+            $table->string('siglas',3);
             $table->timestamp('FUA');
         });
     }

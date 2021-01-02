@@ -51,7 +51,7 @@
                             <td colspan="4" class="table-dark text-center">Descripcion breve de la falla</td>
                         </tr>
                         <tr>
-                            <td colspan="4">{{ $solicitud->descripcionFalla }}</td>
+                            <td class="text-break" colspan="4">{{ $solicitud->descripcionFalla }}</td>
                         </tr>
                         <!-- Datos del equipo -->
                         <tr>

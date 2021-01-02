@@ -81,6 +81,11 @@
                     <div class="sidebar-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
+                                <a href="{{ route('home') }}" class="nav-link"><ion-icon name="add-circle-outline"></ion-icon>Dashboard</a>
+                            </li>
+                        </ul>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
                                 <a href="{{ route('solicitudes.create') }}" class="nav-link"><ion-icon name="add-circle-outline"></ion-icon>Registrar solicitud</a>
                             </li>
                         </ul>

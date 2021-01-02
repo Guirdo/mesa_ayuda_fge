@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/home/estadistica','HomeController@estadistica');
 
 Route::resource('users', 'UserController');
 Route::resource('empleados', 'EmpleadoController');
