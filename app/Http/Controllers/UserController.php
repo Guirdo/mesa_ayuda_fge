@@ -25,9 +25,11 @@ class UserController extends Controller
 
     public function index()
     {
-        $usuarios = User::all();
-
+        $usuarios = DB::table('users') ->join('empleados','empleados.id','=','users.idEmpleado')
+        ->select('*')->get();
+        $usuarios =  json_decode( json_encode($usuarios), true);
         return view('users.index', compact('usuarios'));
+        
     }
 
     public function show($id)
@@ -89,6 +91,22 @@ class UserController extends Controller
 
         $usuario->delete();
 
+        return redirect()->route('users.index');
+    }
+    public function updateEstado(Request $request){
+        $usuario = User::where('id',$request->id)->first();
+        //$idEmpleado = $usuario-> request('idEmpleado');
+        $empleado = Empleado::find($usuario->idEmpleado);
+        $empleado->idEstatus = 1;
+        $empleado->save();
+        return redirect()->route('users.index');
+    }
+    public function updateEstadoInactivo(Request $request ){
+        $usuario = User::where('id',$request->id)->first();
+        //$idEmpleado = $usuario-> request('idEmpleado');
+        $empleado = Empleado::find($usuario->idEmpleado);
+        $empleado->idEstatus = 4;
+        $empleado->save();
         return redirect()->route('users.index');
     }
 

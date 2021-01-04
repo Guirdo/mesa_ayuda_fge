@@ -22,6 +22,10 @@ class CatEstatusSeeder extends Seeder
         DB::table('cat_estatuses')->insert([
             'estatus' => 'VACACIONES',
         ]);
+        DB::table('cat_estatuses')->insert([
+            'estatus' => 'INACTIVO',
+        ]);
+
 
     }
 }
