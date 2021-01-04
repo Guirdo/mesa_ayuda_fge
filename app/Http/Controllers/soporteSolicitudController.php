@@ -45,10 +45,11 @@ class soporteSolicitudController extends Controller
      */
     public function create()
     {
+        $soporte = Empleado::find(Auth::user()->idEmpleado);
         $tipoSolicitudes = Cat_Tipo_Solicitud::all();
         $tipoServicios = Cat_TipoServicio::all();
 
-        return view('solicitudes.create',compact('tipoSolicitudes','tipoServicios'));
+        return view('solicitudes.create',compact('tipoSolicitudes','tipoServicios','soporte'));
     }
 
     /**
@@ -59,20 +60,24 @@ class soporteSolicitudController extends Controller
      */
    public function store(SolicitudStoreRequest $request)
     {
-        $idEmpleado = request('idEmpleado');
-        $empleado = Empleado::find($idEmpleado);
-        $solicitud = new Solicitud;
+        $soporte = Empleado::find(Auth::user()->idEmpleado);
+        if($soporte->idEstatus == 1){
+            $idEmpleado = request('idEmpleado');
+            $empleado = Empleado::find($idEmpleado);
+            $solicitud = new Solicitud;
+            $idArea = $soporte->idArea;
 
-        $solicitud->folio = "FGE-00000000";
-        $solicitud->tipoSolicitud = request('tipoSolicitud');
-        $solicitud->oficioRelacionado = request('oficioRelacionado');
-        $solicitud->idEmpleado = $empleado->id;
-        $solicitud->tipoServicio = request('tipoServicio');
-        $solicitud->descripcionFalla = request('descripcion');
+            $solicitud->folio = self::crearFolio($idArea);
+            $solicitud->tipoSolicitud = request('tipoSolicitud');
+            $solicitud->oficioRelacionado = request('oficioRelacionado');
+            $solicitud->idEmpleado = $empleado->id;
+            $solicitud->tipoServicio = request('tipoServicio');
+            $solicitud->descripcionFalla = request('descripcion');
 
-        $solicitud->save();
+            $solicitud->save();
 
-        return $this->asignarSoporte($solicitud);
+            return $this->asignarSoporte($solicitud,$idArea);
+        }
     }
 
     /**
@@ -165,16 +170,16 @@ class soporteSolicitudController extends Controller
         //
     }
 
-    public function asignarSoporte($solicitudN){
+    public function asignarSoporte($solicitudN,$idArea){
         $solicitudSoporte = new SolicitudSoporte;
         $usuarios = User::join('empleados','empleados.id','=','users.idEmpleado')
-        ->select('users.idEmpleado')-> where('empleados.idEstatus',1)-> where('users.idTipoUsuario',2)->get();
+        ->select('*')->where('empleados.idEstatus',1)-> where('users.idTipoUsuario',2)
+                        ->where('empleados.idArea',$idArea)->get();
         $idEmpleado = 0;
       
         if(count($usuarios)==1){
            foreach($usuarios as $usuario){
             $solicitudSoporte->idSoporte = $usuario->idEmpleado;
-            $idEmpleado = $usuario->idEmpleado;
            }
             $solicitudSoporte->idSolicitud = $solicitudN->id;
             $solicitudSoporte->save();
@@ -183,12 +188,8 @@ class soporteSolicitudController extends Controller
             $solicitudSoporte->idSoporte = $usuarios[$aleatorio]->idEmpleado;
             $solicitudSoporte->idSolicitud = $solicitudN->id;
             $solicitudSoporte->save();
-            $idEmpleado = $usuarios[$aleatorio]->idEmpleado;
         }
 
-        $empleado = Empleado::find($idEmpleado);
-
-        $solicitudN->folio = self::crearFolio($empleado->idArea);
         $solicitudN->idEstado = 2;
         $solicitudN->save();
 
@@ -233,9 +234,10 @@ class soporteSolicitudController extends Controller
     private function crearFolio($idArea){
         $numero = Solicitud::where('FUA','>',date('Y').'-01-01 00:00:00')
                             ->where('FUA','<',date('Y').'-12-31 23:59:59')->count();
-        $numero = $numero+1;
+        //$numero = $numero+1;
 
-        $ads = Adscripcion::find($idArea);
+        $area = Area::find($idArea);
+        $ads = Adscripcion::find($area->idAdscripcion);
         $region = Region::find($ads->idRegion);
         $siglas = $region->siglas;
 

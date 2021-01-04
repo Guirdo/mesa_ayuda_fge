@@ -86,11 +86,6 @@
                         </ul>
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('solicitudes.create') }}" class="nav-link"><ion-icon name="add-circle-outline"></ion-icon>Registrar solicitud</a>
-                            </li>
-                        </ul>
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
                                 <a href="{{ route('users.index') }}" class="nav-link"><ion-icon name="people-circle-outline"></ion-icon>Gestion Usuarios</a>
                             </li>
                         </ul>

@@ -27,9 +27,9 @@ class EmpleadoUpdateRequest extends FormRequest
             'nombre'=>'required',
             'apellidoPat'=>'required',
             'apellidoMat'=>'required',
-            'telefonoPersonal'=>'required|size:10|integer',
+            'telefonoPersonal'=>'required|integer',
             'extencionTelOf'=>'nullable|size:4',
-            'email'=>'required|email',
+            //'email'=>'required|email',
             'CUIP'=>'nullable|alpha_num|size:10',
         ];
     }

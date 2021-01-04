@@ -33,11 +33,11 @@ class CreateEquiposTable extends Migration
      */
     public function down()
     {
-        /*
+        
         Schema::table('equipos', function (Blueprint $table){
             $table->dropSoftDeletes();
 
-        });*/
+        });
         Schema::dropIfExists('equipos');
     }
 }

@@ -87,7 +87,13 @@
                             <textarea class="form-control" name="descripcion" id="" cols="30" rows="3"></textarea>
                         </div>
 
-                        <button class="btn btn-success">Registrar</button>
+                        @if($soporte->idEstatus == 1)
+                            <button class="btn btn-success">Registrar</button>
+                        @else
+                            <div class="alert alert-warning" role="alert">
+                                Estas deshabilitado, no puedes registrar una solicitud.
+                            </div>
+                        @endif
                     </form>
                     
                 </div>

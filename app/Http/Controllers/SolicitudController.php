@@ -19,6 +19,8 @@ use App\CatTipoReparacion;
 use App\Http\Requests\SolicitudStoreRequest;
 use Illuminate\Http\Request;
 use DB;
+use Auth;
+
 class SolicitudController extends Controller
 {
     /**
@@ -39,10 +41,11 @@ class SolicitudController extends Controller
      */
     public function create()
     {
+        $soporte = Empleado::find(Auth::user()->idEmpleado);
         $tipoSolicitudes = Cat_Tipo_Solicitud::all();
         $tipoServicios = Cat_TipoServicio::all();
 
-        return view('solicitudes.create',compact('tipoSolicitudes','tipoServicios'));
+        return view('solicitudes.create',compact('tipoSolicitudes','tipoServicios','soporte'));
     }
 
     /**
@@ -229,7 +232,8 @@ class SolicitudController extends Controller
                             ->where('FUA','<',date('Y').'-12-31 23:59:59')->count();
         //$numero = $numero+1;
 
-        $ads = Adscripcion::find($idArea);
+        $area = Area::find($idArea);
+        $ads = Adscripcion::find($area->idAdscripcion);
         $region = Region::find($ads->idRegion);
         $siglas = $region->siglas;
 
