@@ -57,7 +57,7 @@ class SolicitudController extends Controller
         $empleado = Empleado::find($idEmpleado);
         $solicitud = new Solicitud;
 
-        $solicitud->folio = self::crearFolio($empleado->idArea);
+        $solicitud->folio = "FGE-00000000";
         $solicitud->tipoSolicitud = request('tipoSolicitud');
         $solicitud->oficioRelacionado = request('oficioRelacionado');
         $solicitud->idEmpleado = $empleado->id;
@@ -162,27 +162,29 @@ class SolicitudController extends Controller
     public function asignarSoporte($solicitudN){
         $solicitudSoporte = new SolicitudSoporte;
         $usuarios = User::join('empleados','empleados.id','=','users.idEmpleado')
-        ->select('users.id')-> where('empleados.idEstatus',1)-> where('users.idTipoUsuario',2)->get();
+        ->select('users.idEmpleado')-> where('empleados.idEstatus',1)-> where('users.idTipoUsuario',2)->get();
+        $idEmpleado = 0;
       
         if(count($usuarios)==1){
            foreach($usuarios as $usuario){
-            $solicitudSoporte->idSoporte = $usuario->id;
+            $solicitudSoporte->idSoporte = $usuario->idEmpleado;
+            $idEmpleado = $usuario->idEmpleado;
            }
             $solicitudSoporte->idSolicitud = $solicitudN->id;
             $solicitudSoporte->save();
         }else{
-            $aleatorio = rand(1,count($usuarios));
-            $solicitudSoporte->idSoporte = $usuarios[$aleatorio]->id;
+            $aleatorio = rand(0,count($usuarios)-1);
+            $solicitudSoporte->idSoporte = $usuarios[$aleatorio]->idEmpleado;
             $solicitudSoporte->idSolicitud = $solicitudN->id;
             $solicitudSoporte->save();
-
+            $idEmpleado = $usuarios[$aleatorio]->idEmpleado;
         }
-        
-        
 
-        $solicitud = Solicitud::find($solicitudN->id);
-        $solicitud->idEstado = 2;
-        $solicitud->save();
+        $empleado = Empleado::find($idEmpleado);
+
+        $solicitudN->folio = self::crearFolio($empleado->idArea);
+        $solicitudN->idEstado = 2;
+        $solicitudN->save();
 
         return redirect()->route('solicitudes.index');
     }
