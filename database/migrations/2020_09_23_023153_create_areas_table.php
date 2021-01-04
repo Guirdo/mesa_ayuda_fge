@@ -15,8 +15,8 @@ class CreateAreasTable extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->id();
-            $table->string('area',100);
-            $table->bigInteger('idAdscripcion');
+            $table->text('area');
+            $table->unsignedBigInteger('idAdscripcion');
             $table->timestamp('FUA');
 
             //$table->foreign('idAdscripcion')->references('id')->on('adscripcions')->cascade();

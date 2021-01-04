@@ -17,9 +17,9 @@ class CreateEquiposTable extends Migration
             $table->id();
             $table->string('marca',45);
             $table->string('modelo',45);
-            $table->bigInteger('numeroSerie');
-            $table->bigInteger('claveInventarial');
-            $table->bigInteger('idTipoEquipo');
+            $table->string('numeroSerie',45);
+            $table->string('claveInventarial',45);
+            $table->unsignedBigInteger('idTipoEquipo');
             // $table->foreign('idTipoEquipo')->references('id')->on('cat_tipo_equipo');
             $table->timestamps();
             $table->softDeletes();
@@ -33,10 +33,11 @@ class CreateEquiposTable extends Migration
      */
     public function down()
     {
+        /*
         Schema::table('equipos', function (Blueprint $table){
             $table->dropSoftDeletes();
 
-        });
+        });*/
         Schema::dropIfExists('equipos');
     }
 }

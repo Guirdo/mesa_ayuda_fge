@@ -227,7 +227,7 @@ class SolicitudController extends Controller
     private function crearFolio($idArea){
         $numero = Solicitud::where('FUA','>',date('Y').'-01-01 00:00:00')
                             ->where('FUA','<',date('Y').'-12-31 23:59:59')->count();
-        $numero = $numero+1;
+        //$numero = $numero+1;
 
         $ads = Adscripcion::find($idArea);
         $region = Region::find($ads->idRegion);

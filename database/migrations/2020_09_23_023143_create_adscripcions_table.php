@@ -16,7 +16,7 @@ class CreateAdscripcionsTable extends Migration
         Schema::create('adscripcions', function (Blueprint $table) {
             $table->id();
             $table->text('adscripcion');
-            $table->bigInteger('idRegion');
+            $table->unsignedBigInteger('idRegion');
             $table->timestamp('FUA');
 
             //$table->foreign('idRegion')->references('id')->on('regions')->cascade();

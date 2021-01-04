@@ -62,7 +62,7 @@ $(document).on('click', '#btnImprimir', function (event) {
                         { content: 'Modelo', styles: etiqueta},equipo.modelo],
                     [{ content: 'No. serie', styles: etiqueta}, equipo.numeroSerie,
                         { content: 'Clave inventarial', styles: etiqueta},equipo.claveInventarial],
-                    [{content: 'Nombre del equipo',styles: etiqueta},{content: ''},
+                    [{content: 'Nombre del equipo',styles: etiqueta},{content: computadora!=null ? computadora.nombre_computadora:''},
                         {content: 'Grupo de trabajo', styles: etiqueta},{content: computadora!=null ? computadora.grupo_de_trabajo:''}],
                     [{content: 'ESPECIFICACIONES TÉCNICAS', colSpan: 4, styles: etiquetaL}],
                     [{ content: 'Disco duro', styles: etiqueta}, computadora!=null ? computadora.discoDuro:'',

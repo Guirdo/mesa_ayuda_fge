@@ -15,9 +15,9 @@ class DatabaseSeeder extends Seeder
             RegionSeeder::class,
             AdscripcionSeeder::class,
             AreaSeeder::class,
+            CatEstatusSeeder::class,
             EmpleadoSeeder::class,
             
-            CatEstatusSeeder::class,
             CatTipoReparacionSeeder::class,
             CatEstadoSeeder::class,
             Cat_Tipo_SolicitudSeeder::class,

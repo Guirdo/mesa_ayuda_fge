@@ -14,8 +14,8 @@ class CreateEquipoSolicitudsTable extends Migration
     public function up()
     {
         Schema::create('equipo_solicituds', function (Blueprint $table) {
-            $table->bigInteger('idEquipo');
-            $table->bigInteger('idSolicitud');
+            $table->unsignedBigInteger('idEquipo');
+            $table->unsignedBigInteger('idSolicitud');
             $table->timestamp('FUA');
         });
     }

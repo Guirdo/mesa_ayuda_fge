@@ -6,6 +6,7 @@
 
 @section('content')
 <div class="container">
+
     <h3>Sobre el día de hoy...</h3>
 
     <div class="row row-col-2 justify-content-between">
@@ -73,8 +74,6 @@
     </div>
 
     <div id="myChart"></div>
-    <br>
-    <br>
     <br>
     <br>
     <br>

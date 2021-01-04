@@ -81,7 +81,7 @@
                     <div class="sidebar-sticky pt-3">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a href="{{ route('home') }}" class="nav-link"><ion-icon name="add-circle-outline"></ion-icon>Dashboard</a>
+                                <a href="{{ route('home') }}" class="nav-link"><ion-icon name="bar-chart-outline"></ion-icon>Dashboard</a>
                             </li>
                         </ul>
                         <ul class="nav flex-column">
@@ -133,6 +133,12 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a href="{{ route('equipos.index') }}" class="nav-link"><ion-icon name="desktop-outline"></ion-icon>Gestion Equipos</a>
+                            </li>
+                        </ul>
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a href="{{ route('empleados.index') }}" class="nav-link"><ion-icon name="briefcase-outline"></ion-icon>Gestion Empleados</a>
                             </li>
                         </ul>
                     </div>

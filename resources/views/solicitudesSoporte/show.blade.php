@@ -181,9 +181,6 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <!-- Poner los datos de una computadora y arreglar las marcas
-                                        de tiempo de la migracion de computadora
-                                     -->
                                      <h5>Grupo de trabajo</h5>
                                      <p>{{ $computadora->grupo_de_trabajo }}</p>
                                 </div>
@@ -294,5 +291,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
     <script src="{{ asset('js/equipos/buscar.js') }}"></script>
-    <!-- <script src="{{ asset('js/solicitudes/generarPDF.js') }}"></script>-->
 @endsection

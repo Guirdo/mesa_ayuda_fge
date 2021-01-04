@@ -15,14 +15,13 @@ class CreateComputadorasTable extends Migration
     {
         Schema::create('computadoras', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('equipo_numeroSerie');
+            $table->string('equipo_numeroSerie',45);
             $table->String('nombre_computadora',45);
             $table->String('grupo_de_trabajo',45);
             $table->String('discoDuro',30);
             $table->String('sistemaOperativo',45);
             $table->String('ram',10);
-            $table->String('procesador',10);
-           // $table->foreign('equipo_numeroSerie')->references('id')->on('equipos');
+            $table->String('procesador',30);
             $table->timestamps();
             $table->softDeletes();
         });

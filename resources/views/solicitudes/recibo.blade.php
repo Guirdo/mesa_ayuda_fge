@@ -67,11 +67,11 @@
                             <td class="table-dark">No. Serie</td>
                             <td>{{ $equipo->numeroSerie }}</td>
                             <td class="table-dark">Clave inventarial</td>
-                            <td>{{ $equipo->claveInventaraial }}</td>
+                            <td>{{ $equipo->claveInventarial }}</td>
                         </tr>
                         <tr>
                             <td class="table-dark">Nombre del equipo</td>
-                            <td></td>
+                            <td>{{ $computadora!=null ? $computadora->nombre_computadora:'' }}</td>
                             <td class="table-dark">Grupo de trabajo</td>
                             <td>{{ $computadora!=null ? $computadora->grupo_de_trabajo:'' }}</td>
                         </tr>
@@ -117,7 +117,7 @@
                 </table>
             </div>
 
-            <div>
+            <div class="row justify-content-center">
                 <input type="hidden" name="idSol" id="idSol" value="{{ $solicitud->id }}">
                 <button class="btn btn-success" id="btnImprimir">Imprimir</button>
             </div>

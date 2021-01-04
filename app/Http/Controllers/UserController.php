@@ -10,6 +10,7 @@ use App\User;
 use App\Cat_TipoUsuario;
 use App\Empleado;
 use App\Area;
+use DB;
 
 class UserController extends Controller
 {

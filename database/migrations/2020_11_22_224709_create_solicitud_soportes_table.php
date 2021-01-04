@@ -14,8 +14,8 @@ class CreateSolicitudSoportesTable extends Migration
     public function up()
     {
         Schema::create('solicitud_soportes', function (Blueprint $table) {
-            $table->bigInteger('idSoporte');
-            $table->bigInteger('idSolicitud');
+            $table->unsignedBigInteger('idSoporte');
+            $table->unsignedBigInteger('idSolicitud');
             $table->timestamp('FUA');
         });
     }

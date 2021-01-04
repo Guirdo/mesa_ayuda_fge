@@ -61,8 +61,8 @@ class EquipoController extends Controller
             $computadora->nombre_computadora= request('nombre');
             $computadora->grupo_de_trabajo = request('grupodetrabajo');
             $computadora->discoDuro = request('discoduro');
-            $computadora->sistemaOperativo = request('memoria');
-            $computadora->ram = request('sistemaoperativo');
+            $computadora->sistemaOperativo = request('sistemaoperativo');
+            $computadora->ram = request('memoria') ;
             $computadora->procesador = request('procesador');
             $computadora->save();
         }

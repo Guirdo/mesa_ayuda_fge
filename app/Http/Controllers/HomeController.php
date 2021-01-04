@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Solicitud;
 use App\SolicitudSoporte;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -25,12 +26,16 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $recibidas = Solicitud::whereDate('fechaRegistro',date('Y-m-d'))->count();
-        $terminadas = Solicitud::whereDate('fechaTermino',date('Y-m-d'))->count();
-        $atendidas = Solicitud::where('idEstado',2)->count();
-        $canceladas = Solicitud::whereDate('fechaCancelacion',date('Y-m-d'))->count();
+        if(Auth::user()->idTipoUsuario == 1){
+            $recibidas = Solicitud::whereDate('fechaRegistro',date('Y-m-d'))->count();
+            $terminadas = Solicitud::whereDate('fechaTermino',date('Y-m-d'))->count();
+            $atendidas = Solicitud::where('idEstado',2)->count();
+            $canceladas = Solicitud::whereDate('fechaCancelacion',date('Y-m-d'))->count();
 
-        return view('home', compact('recibidas','terminadas','atendidas','canceladas'));
+            return view('home', compact('recibidas','terminadas','atendidas','canceladas'));
+        }else{
+            return redirect()->route('solicitudes.create');
+        }
     }
 
     public function estadistica(Request $request){

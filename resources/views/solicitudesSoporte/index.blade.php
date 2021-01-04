@@ -14,6 +14,32 @@
                         <a href="{{ route('solicitudes.create') }}" class="btn btn-primary">Registrar solicitud</a>
                     </div>
 
+                    <label for="">Solicitudes en atencion</label>
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <td scope="col">Folio</td>
+                                <td scope="col">Fecha de registro</td>
+                                <td scope="col">Estado</td>
+                                <td scope="col">--</td>
+                                
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (!is_null($solicitudesA))
+                                @foreach ($solicitudesA as $solicitud)
+                            <tr>
+                                <td>{{ $solicitud['folio'] }}</td>
+                                <td>{{ $solicitud['fechaRegistro'] }}</td>
+                                <td><span class="text-primary">ATENDIENDO</span></td>
+                                <td><a href="{{ route('solicitudesSoporte.show',$solicitud['id']) }}">VER</a></td>
+                            </tr>
+                            @endforeach
+                            @endif
+                        </tbody>
+                    </table>
+
                     <label for="">Solicitudes sin atender</label>
                     <table class="table">
                         <thead class="thead-dark">
@@ -42,31 +68,6 @@
                         </tbody>
                     </table>
 
-                    <label for="">Solicitudes en atencion</label>
-                    <table class="table">
-                    <thead class="thead-dark">
-                            <tr>
-                                <td scope="col">Folio</td>
-                                <td scope="col">Fecha de registro</td>
-                                <td scope="col">Estado</td>
-                                <td scope="col">--</td>
-                                
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @if (!is_null($solicitudesA))
-                                @foreach ($solicitudesA as $solicitud)
-                            <tr>
-                                <td>{{ $solicitud['folio'] }}</td>
-                                <td>{{ $solicitud['fechaRegistro'] }}</td>
-                                <td><span class="text-primary">ATENDIENDO</span></td>
-                                <td><a href="{{ route('solicitudesSoporte.show',$solicitud['id']) }}">VER</a></td>
-                            </tr>
-                            @endforeach
-                            @endif
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>

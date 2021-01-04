@@ -21,11 +21,11 @@ class CreateSolicitudsTable extends Migration
             $table->text('observaciones')->nullable();
             $table->text('diagnostico')->nullable();
             $table->text('respaldo')->nullable();
-            $table->bigInteger('tipoSolicitud');
-            $table->bigInteger('tipoServicio');
-            $table->bigInteger('tipoReparacion')->default(1);
-            $table->bigInteger('idEmpleado');
-            $table->bigInteger('idEstado')->default(1);
+            $table->unsignedBigInteger('tipoSolicitud');
+            $table->unsignedBigInteger('tipoServicio');
+            $table->unsignedBigInteger('tipoReparacion')->default(1);
+            $table->unsignedBigInteger('idEmpleado');
+            $table->unsignedBigInteger('idEstado')->default(1);
             $table->timestamp('FUA')->useCurrentOnUpdate();
             $table->timestamp('fechaRegistro')->useCurrent();
             $table->timestamp('fechaTermino')->nullable();
