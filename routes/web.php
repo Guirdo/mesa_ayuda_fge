@@ -21,6 +21,8 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home/estadistica','HomeController@estadistica');
+Route::get('/home/estadisticaAvanzada','HomeController@estadisticaAvanzada');
+Route::post('/generarGrafica','HomeController@generarGrafica')->name('generarGrafica');
 
 Route::resource('users', 'UserController');
 Route::resource('empleados', 'EmpleadoController');
@@ -38,7 +40,7 @@ Route::post('/solicitudes/guardarDiagnostico','SolicitudController@guardarDiagno
 Route::post('/solicitudes/terminar','SolicitudController@terminarSolicitud');
 Route::post('/solicitudes/posponer','SolicitudController@posponerSolicitud');
 Route::post('/solicitudes/generar','SolicitudController@generarPDF');
-Route::post('/solicitudes/mostrarTerminados','SolicitudController@mostrarTerminados')->name('solicitudes.mostrarTerminados');
+Route::post('/solicitudes/gestion','SolicitudController@gestionSolicitudes');
 Route::get('/solicitudes/recibo/{folio}','SolicitudController@generarRecibo')->name('solicitudes.recibo');
 
 Route::resource('equipos', 'EquipoController');

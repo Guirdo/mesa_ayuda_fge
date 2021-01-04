@@ -17,7 +17,6 @@ $(document).on('click','#tomar',function(event){
         }
     });
 
-
     $.ajax ({
         method: "POST",
         url: '/solicitudesSoporte/asignar',
@@ -30,10 +29,4 @@ $(document).on('click','#tomar',function(event){
         }
         
     });
-    
-
-    
-
-
-
 });

@@ -34,13 +34,6 @@ function reporteSemanal(datos){
         ykeys: ['recibido','terminado','cancelado'],
         labels: ['Recibidas','Terminadas','Canceladas'],
         lineColors: ['blue','green','red'],
-        /*
-        hoverCallback: function (index, options, content, row) {
-            //console.log(content);
-            var hover = "<div class='morris-hover-row-label'>Recibidas: "+row.recibido+"<br>"+
-            "Atendidas: "+row.atendido+"</div>";
-            return hover;
-          },*/
       });
 }
 
@@ -51,7 +44,7 @@ function darFechas(){
     if(date.getDay()>1){
         date.setDate(date.getDate()-date.getDay()+1);
     }else if(date.getDay()==0){
-        date.setDate(date.getDate()-7);
+        date.setDate(date.getDate()-6);
     }
     
     for(i=0;i<7;i++){
@@ -71,7 +64,7 @@ function ponerTitulo(){
     if(date.getDay()>1){
         date.setDate(date.getDate()-date.getDay()+1);
     }else if(date.getDay()==0){
-        date.setDate(date.getDate()-7);
+        date.setDate(date.getDate()-6);
     }
 
     meses = ['ENE','FEB','MAR','ABR','MAY','JUN','JUL','AGO','SEP','OCT','NOV','DIC'];

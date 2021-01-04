@@ -19,59 +19,93 @@
                     </div>
 
                     <br>
-                    <label for="">Solicitudes sin atender</label>
-                    <div class="my-custom-scrollbar table-wrapper-scroll-y">
+                    <form action="{{ url('/solicitudes/gestion') }}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="form-group">
+                            <label for="">Fecha de inicio</label>
+                            <input class="form-control" type="date" name="fechaInicio" id="fechaInicio">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Fecha final</label>
+                            <input class="form-control" type="date" name="fechaFinal" id="fechaFinal">
+                        </div>
+                    </div>
+
+                    <div class="form-group row justify-content-between">
+                        <label for="">Estado de la solicitud: </label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="estadoSolicitud" value="1" checked>
+                            <label class="form-check-label" for="">Recibidas</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="estadoSolicitud" value="2">
+                            <label class="form-check-label" for="">Terminadas</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="estadoSolicitud" value="3">
+                            <label class="form-check-label" for="">En atencion</label>
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="estadoSolicitud" value="4">
+                            <label class="form-check-label" for="">Canceladas</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" id="btnBuscar">Buscar</button>
+                        </form>
+                    </div>
+
                     <table class="table">
-                        <thead class="thead-dark">
+                        <thead>
                             <tr>
-                                <td scope="col">Folio</td>
-                                <td scope="col">Fecha de registro</td>
-                                <td scope="col">Estado</td>
-                                <td scope="col">--</td>
+                                <th>Folio</th>
+                                <th>Fecha de registro</th>
+                                <th>Estado</th>
+                                <th>---</th>
                             </tr>
                         </thead>
 
-                        <tbody>
-                            @foreach ($solicitudes as $solicitud)
-                            <tr>
-                                <td>{{ $solicitud->folio }}</td>
-                                <td>{{ $solicitud->fechaRegistro }}</td>
-                                <td><span class="text-danger">SIN ATENDER</span></td>
-                                <td><a href="{{ route('solicitudes.show',$solicitud) }}">VER</a></td>
-                            </tr>
-                            @endforeach
+                        <tbody id="tbSolicitudes">
+                            @if($solicitudes != null)
+                                @foreach($solicitudes as $sol)
+                                    <tr>
+                                        <td>{{ $sol->folio }}</td>
+                                        <td>{{ $sol->fechaRegistro }}</td>
+                                        @switch($sol->idEstado)
+                                            @case(1)
+                                                <td class="text-white bg-primary text-center">SIN ATENDER</td>
+                                                <td><a href="{{ route('solicitudes.show',$sol->id) }}">VER</a></td>
+                                                @break
+                                            @case(2)
+                                                <td class="bg-warning text-center">EN ATENCION</td>
+                                                <td><a href="{{ route('solicitudes.show',$sol->id) }}">VER</a></td>
+                                                @break
+                                            @case(3)
+                                                <td class="bg-success text-center">TERMINADA</td>
+                                                <td><a href="{{ url('/solicitudes/recibo',$sol->folio) }}">VER</a></td>
+                                                @break
+                                            @case(4)
+                                                <td class="text-white bg-danger text-center">CANCELADA</td>
+                                                <td><a href="{{ route('solicitudes.show',$sol->id) }}">VER</a></td>
+                                                @break
+                                        @endswitch
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
-                    </div>
-
-                    <label for="">Solicitudes en atencion</label>
-                    <div class="my-custom-scrollbar table-wrapper-scroll-y">
-                    <table class="table">
-                        <thead class="thead-dark">
-                            <tr>
-                                <td scope="col">Folio</td>
-                                <td scope="col">Fecha de registro</td>
-                                <td scope="col">Estado</td>
-                                <td scope="col">--</td>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach ($solicitudesA as $solicitud)
-                            <tr>
-                                <td>{{ $solicitud->folio }}</td>
-                                <td>{{ $solicitud->fechaRegistro }}</td>
-                                <td><span class="text-primary">ATENDIENDO</span></td>
-                                <td><a href="{{ route('solicitudes.show',$solicitud) }}">VER</a></td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/solicitudes/index.js') }}"></script>
 @endsection

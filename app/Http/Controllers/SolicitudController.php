@@ -28,10 +28,8 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        $solicitudes = Solicitud::where('idEstado',1)->get();
-        $solicitudesA = Solicitud::where('idEstado',2)->get();
-
-        return view('solicitudes.index',compact('solicitudes','solicitudesA'));
+        $solicitudes = null;
+        return view('solicitudes.index',compact('solicitudes'));
     }
 
     /**
@@ -300,12 +298,35 @@ class SolicitudController extends Controller
 
         return view('solicitudes.recibo',compact('solicitud','tipoSolicitud','empleado','area',
                     'tipoServicio','equipo','computadora','tipoReparacion','soporte'));
+    }
 
-        /*
-        $id = request('idSol');
-        $solicitud = Solicitud::find($id);
+    public function gestionSolicitudes(Request $request){
+        $fechaInicio = $request->fechaInicio;
+        $fechaFinal = $request->fechaFinal;
+        $estadoSolicitud = $request->estadoSolicitud;
+        $solicitudes = null;
 
-        return response()->json(['solicitud'=>$solicitud,'tipoSol'=>$tipoSolicitud,'empleado'=>$empleado,
-                                'area'=>$area,'tipoSer'=>$tipoServicio]);*/
+        switch($estadoSolicitud){
+            case 1:
+                $solicitudes = Solicitud::whereDate('fechaRegistro','>=',$fechaInicio)
+                                        ->whereDate('fechaRegistro','<=',$fechaFinal)
+                                        ->where('idEstado',1)->get();
+                break;
+            case 2:
+                $solicitudes = Solicitud::whereDate('fechaTermino','>=',$fechaInicio)
+                                        ->whereDate('fechaTermino','<=',$fechaFinal)->get();
+                break;
+            case 3:
+                $solicitudes = Solicitud::whereDate('fechaRegistro','>=',$fechaInicio)
+                                        ->whereDate('fechaRegistro','<=',$fechaFinal)
+                                        ->where('idEstado',2)->get();
+                break;
+            case 4:
+                $solicitudes = Solicitud::whereDate('fechaCancelacion','>=',$fechaInicio)
+                                        ->whereDate('fechaCancelacion','<=',$fechaFinal)->get();
+                break;
+        }
+
+        return view('solicitudes.index',compact('solicitudes'));
     }
 }

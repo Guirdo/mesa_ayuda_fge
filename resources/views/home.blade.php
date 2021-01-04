@@ -13,7 +13,7 @@
             <div class="card-header">Recibidas</div>
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="https://picsum.photos/100" alt="">
+                    <ion-icon name="receipt-outline" style="font-size: 100px"></ion-icon>
                 </div>
                 <div class="col">
                     <div class="card-body row justify-content-center">
@@ -27,7 +27,7 @@
             <div class="card-header">Terminadas</div>
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="https://picsum.photos/100" alt="">
+                    <ion-icon name="checkbox" style="font-size: 100px"></ion-icon>
                 </div>
                 <div class="col">
                     <div class="card-body row justify-content-center">
@@ -41,7 +41,7 @@
             <div class="card-header">En atencion</div>
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="https://picsum.photos/100" alt="">
+                    <ion-icon name="alert-circle" style="font-size: 100px"></ion-icon>
                 </div>
                 <div class="col">
                     <div class="card-body row justify-content-center">
@@ -55,7 +55,7 @@
             <div class="card-header">Canceladas</div>
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="https://picsum.photos/100" alt="">
+                    <ion-icon name="close-circle" style="font-size: 100px"></ion-icon>
                 </div>
                 <div class="col">
                     <div class="card-body row justify-content-center">
@@ -69,7 +69,7 @@
 
     <div class="row justify-content-between">
         <h3 id="tituloSemana">Semana 28-Dic-2020 al 3-Ene-2021</h3>
-        <button class="btn btn-info">Estadistica avanzada</button>
+        <a href="{{ url('/home/estadisticaAvanzada') }}" class="btn btn-info">Estadistica avanzada</a>
     </div>
 
     <div id="myChart"></div>
