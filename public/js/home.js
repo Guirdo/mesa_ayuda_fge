@@ -5,12 +5,14 @@ $(document).ready(function(){
         }
     });
 
+    console.log('URL: '+window.location.origin);
+
     var fechas = darFechas();
     ponerTitulo();
 
     $.ajax ({
         method: "POST",
-        url: '/home/estadistica',
+        url: window.location.origin+'/home/estadistica',
         data: {fechas},
         success: function(response) {
             var datos = response.datos;

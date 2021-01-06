@@ -8,7 +8,7 @@ $(document).on('click','#btnBuscar',function(event){
         });
         var noSerie = $('#noSerie').val();
         $.ajax({
-             url: '/equipos/buscarEquipo',
+             url: window.location.origin+'/equipos/buscarEquipo',
              type: 'POST',
              data: {noSerie},
              dataType: 'json',

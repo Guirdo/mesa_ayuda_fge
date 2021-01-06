@@ -7,7 +7,7 @@ $(document).on('change','#region',function(event){
 
     var idRegion = $('#region option:selected').val();
      $.ajax({
-         url: '/empleados/adscripciones',
+         url: window.location.origin+'/empleados/adscripciones',
          type: 'POST',
          data: {idRegion},
          dataType: 'json',

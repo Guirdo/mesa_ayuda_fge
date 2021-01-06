@@ -1,85 +1,64 @@
-$(document).on("change",'#btnEstados',function(event){
-    if($(this).prop('checked')){
-        var valores=[];
+$(document).on("change", '#btnEstados', function (event) {
+    if ($(this).prop('checked')) {
+        var valores = [];
 
- 
+        $(this).parents("tr").find("td").each(function () {
+            valores.push($(this).html());
+        });
+        var id = valores[0];
 
-        // Obtenemos todos los valores contenidos en los <td> de la fila
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
-        // seleccionada
+        $.ajax({
+            method: "POST",
+            url: window.location.origin + '/usuarioEstatus/Estado',
+            data: { id },
+            success: function (response) {
+                location.reload();
+            },
+            error: function (response) {
+                console.log(response);
+            }
 
-        $(this).parents("tr").find("td").each(function(){
+        });
+
+    } else {
+        var valores = [];
+
+        $(this).parents("tr").find("td").each(function () {
 
             valores.push($(this).html());
 
         });
-        var id =valores[0];
+        var id = valores[0];
 
 
-         //AJAX
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
+        //AJAX
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
 
-    $.ajax ({
-        method: "POST",
-        url: '/usuarioEstatus/Estado',
-        data: {id},
-        success: function(response) {
-            location.reload();
-        },
-        error: function(response){
-            console.log(response);
-        }
-        
-    });
-
-
-
-       
-
-    } else{
-        var valores=[];
-
- 
-
-        // Obtenemos todos los valores contenidos en los <td> de la fila
-
-        // seleccionada
-
-        $(this).parents("tr").find("td").each(function(){
-
-            valores.push($(this).html());
+        $.ajax({
+            method: "POST",
+            url: '/usuarioEstatus/Estadoinactivo',
+            data: { id },
+            success: function (response) {
+                location.reload();
+            },
+            error: function (response) {
+                console.log(response);
+            }
 
         });
-        var id =valores[0];
 
 
-         //AJAX
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-
-    $.ajax ({
-        method: "POST",
-        url: '/usuarioEstatus/Estadoinactivo',
-        data: {id},
-        success: function(response) {
-            location.reload();
-        },
-        error: function(response){
-            console.log(response);
-        }
-        
-    });
-       
-        
     }
 });
 

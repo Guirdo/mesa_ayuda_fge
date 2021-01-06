@@ -11,7 +11,7 @@ $(document).on('click', '#btnImprimir', function (event) {
     //var imagen ='data:image/png;base64,'+btoa('fge.png');
     var idSol = $('#idSol').val();
     $.ajax({
-        url: '/solicitudes/generar',
+        url: window.location.origin+'/solicitudes/generar',
         type: 'POST',
         data: { idSol },
         dataType: 'json',

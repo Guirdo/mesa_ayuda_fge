@@ -9,7 +9,7 @@ $(document).on('click','#btnBuscar',function(event){
         var cuip = $('#CUIP').val();
         //console.log("Hola mundo");
         $.ajax({
-             url: '/empleados/darEmpleado',
+             url: window.location.origin+'/empleados/darEmpleado',
              type: 'POST',
              data: {cuip},
              dataType: 'json',

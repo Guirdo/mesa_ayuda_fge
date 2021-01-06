@@ -20,6 +20,7 @@
                         <thead class="thead-dark">
                             <tr>
                                 <td scope="col">ID</td>
+                                <td scope="col">Usuario</td>
                                 <td scope="col">Correo</td>
                                 <td scope="col">Tipo</td>
                                 <td scope="col">Estatus</td>
@@ -31,23 +32,20 @@
                             @php($i=0)
                             @foreach ($usuarios as $usuario)
                             <tr>
-                                <td>{{$usuario['id']}}</td>
-                                <td>{{ $usuario['email'] }}</td>
+                                <td>{{ $usuario->id }}</td>
+                                <td>{{ $usuario->name }}</td>
+                                <td>{{ $usuario->email }}</td>
                                 <td>
-                                    @if($usuario['idTipoUsuario'] == 1)
+                                    @if($usuario->idTipoUsuario == 1)
                                         ADMINISTRADOR
                                     @else
                                         SOPORTE
                                     @endif
                                 </td>
                                  <td>
-                                 @if($usuario['idEstatus']==1) 
-                                 <input type="checkbox" id="btnEstados" data-toggle="switchbutton" checked data-size="xs"  data-onlabel="Activo" data-offlabel="Inactivo" data-offstyle="danger"  >
-                                 @else
-                                 <input type="checkbox" id="btnEstados" data-toggle="switchbutton"  data-size="xs"  data-onlabel="Activo" data-offlabel="Inactivo" data-offstyle="danger"  >
-                                 @endif
+                                    <input type="checkbox" id="btnEstados" data-toggle="switchbutton" @if($empleados[$i]->idEstatus == 1)  checked @endif data-size="xs"  data-onlabel="Activo" data-offlabel="Inactivo" data-offstyle="danger"  >
                                  </td>
-                                <td><a href="{{ route('users.show',$usuario['id']) }}">VER</a></td>
+                                <td><a href="{{ route('users.show',$usuario->id) }}">VER</a></td>
                             </tr>
                             @php($i = $i+1)
                             @endforeach

@@ -101,7 +101,7 @@ function generarGrafica(){
 
     $.ajax ({
         method: "POST",
-        url: '/generarGrafica',
+        url: window.location.origin+'/generarGrafica',
         data: {fechas,idEmpleado},
         success: function(response) {
             var datos = response.datos;

@@ -72,6 +72,7 @@ class EmpleadoController extends Controller
         $empleado->telefonoPersonal = request('telefonoPersonal');
         $empleado->extencionTelOf = request('extencionTelOf');
         $empleado->CUIP = request('CUIP');
+        $empleado->email = request('email');
         $empleado->idArea = request('area');
         $empleado->idEstatus = request('estatus');
 

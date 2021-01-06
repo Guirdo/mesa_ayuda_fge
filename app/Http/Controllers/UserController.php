@@ -25,11 +25,16 @@ class UserController extends Controller
     }
 
     public function index()
-    {
-        $usuarios = DB::table('users') ->join('empleados','empleados.id','=','users.idEmpleado')
-        ->select('*')->get();
-        $usuarios =  json_decode( json_encode($usuarios), true);
-        return view('users.index', compact('usuarios'));
+    {   
+        $usuarios = User::all();
+        $empleados = [];
+
+        foreach($usuarios as $user){
+            $emp = Empleado::find($user->idEmpleado);
+            array_push($empleados,$emp);
+        }
+
+        return view('users.index', compact('usuarios','empleados'));
         
     }
 

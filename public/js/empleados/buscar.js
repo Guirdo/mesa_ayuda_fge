@@ -9,7 +9,7 @@ $(document).on('click','#btnBuscar',function(event){
         var apePat = $('#apellidoPat').val();
         //console.log("Hola mundo");
         $.ajax({
-             url: '/empleados/buscarEmpleados',
+             url: window.location.origin+'/empleados/buscarEmpleados',
              type: 'POST',
              data: {apePat},
              dataType: 'json',

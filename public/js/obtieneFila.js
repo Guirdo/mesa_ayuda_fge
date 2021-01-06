@@ -19,7 +19,7 @@ $(document).on('click','#tomar',function(event){
 
     $.ajax ({
         method: "POST",
-        url: '/solicitudesSoporte/asignar',
+        url: window.location.origin+'/solicitudesSoporte/asignar',
         data: {idSolicitud},
         success: function(response) {
             location.reload();
