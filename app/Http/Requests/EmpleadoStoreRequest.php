@@ -28,7 +28,7 @@ class EmpleadoStoreRequest extends FormRequest
             'apellidoPat'=>'required',
             'apellidoMat'=>'required',
             'telefonoPersonal'=>'required|digits:10|integer',
-            'extencionTelOf'=>'nullable|size:4',
+            'extencionTelOf'=>'nullable|digits:8|integer',
             'email'=>'required|email',
             'CUIP'=>'nullable|alpha_num|size:10',
         ];

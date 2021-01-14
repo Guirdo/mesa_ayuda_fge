@@ -41,7 +41,7 @@
 
                             <div class="col form-group">
                                 <label for="">Oficio relacionado</label>
-                                <input class="form-control" type="text" name="oficioRelacionado">
+                                <input class="form-control" type="text" name="oficioRelacionado" value="{{ old('oficioRelacionado') }}">
                             </div>
                         </div>
 
@@ -52,7 +52,7 @@
                         <div class="form-group row">
                             <label for="" class="col-sm-2">Empleado</label>
                             <div class="col">
-                                <input type="text" name="apellidoPat" id="apellidoPat" class="form-control">
+                                <input type="text" name="apellidoPat" id="apellidoPat" class="form-control" placeholder="Buscar por apellido paterno">
                             </div>
                             <button class="btn btn-success" id="btnBuscar">Buscar</button>
                             <a href="{{ route('empleados.create') }}" class="btn btn-warning">Agregar empleado</a>
@@ -84,7 +84,7 @@
 
                         <div class="form-group">
                             <label for="">Descripcion breve de la falla</label>
-                            <textarea class="form-control" name="descripcion" id="" cols="30" rows="3"></textarea>
+                            <textarea class="form-control" name="descripcion" id="" cols="30" rows="3">{{ old('descripcion') }}</textarea>
                         </div>
 
                         @if($soporte->idEstatus == 1)

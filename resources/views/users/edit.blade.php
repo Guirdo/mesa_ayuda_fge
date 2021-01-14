@@ -81,7 +81,7 @@
 
                         <div class="form-group">
                             <label for="">Tipo usuario</label>
-                            <select class="form-control" name="" id="">
+                            <select class="form-control" name="idTipoUsuario" id="">
                                 @foreach($tipoUsuario as $tipo)
                                     <option value="{{ $tipo->id }}" @if($tipo->id == $usuario->idTipoUsuario) selected="selected" @endif>
                                         {{ $tipo->tipoUsuario }}

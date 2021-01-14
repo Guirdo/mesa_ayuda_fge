@@ -65,6 +65,8 @@ class UserController extends Controller
         if(!empty($request->password)){
             $usuario->password = Hash::make(request('password'));
         }
+        $usuario->idEmpleado = request('idEmpleado');
+        $usuario->idTipoUsuario = request('idTipoUsuario');
 
         $usuario->save();
 

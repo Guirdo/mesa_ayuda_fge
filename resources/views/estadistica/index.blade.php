@@ -43,7 +43,7 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2">Empleado</label>
                         <div class="col">
-                            <input type="text" name="apellidoPat" id="apellidoPat" class="form-control" disabled>
+                            <input type="text" name="apellidoPat" id="apellidoPat" class="form-control" disabled placeholder="Buscar por apellido paterno">
                         </div>
                         <button class="btn btn-success" id="btnBuscar">Buscar</button>
                 </div>

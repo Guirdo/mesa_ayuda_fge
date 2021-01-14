@@ -27,12 +27,12 @@
                         
                         <div class="form-group">
                             <label for="">Username</label>
-                            <input class="form-control" type="text" name="name" id="name" >
+                            <input class="form-control" type="text" name="name" id="name" value="{{ old('name') }}">
                         </div>
 
                         <div class="form-group">
                             <label for="">Email</label>
-                            <input class="form-control" type="text" name="email" id="">
+                            <input class="form-control" type="text" name="email" id="" value="{{ old('email') }}">
                         </div>
 
                         <div class="row">
@@ -50,7 +50,7 @@
                         <div class="form-group row mt-3">
                             <label for="" class="col-sm-2">Empleado</label>
                             <div class="col">
-                                <input type="text" name="apellidoPat" id="apellidoPat" class="form-control">
+                                <input type="text" name="apellidoPat" id="apellidoPat" class="form-control" placeholder="Buscar por apellido paterno">
                             </div>
                             <button class="btn btn-success" id="btnBuscar">Buscar</button>
                         </div>

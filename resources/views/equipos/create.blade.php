@@ -26,23 +26,23 @@
                          <div class="container row">
                                <div class="form-group">
                                    <label for="">Marca</label>
-                                   <input class="form-control" type="text" name="marca">
+                                   <input class="form-control" type="text" name="marca" value="{{ old('marca') }}">
                               </div>
 
                               <div class="form-group ml-5">
                                   <label for="">Modelo</label>
-                                  <input class="form-control" type="text" name="modelo">
+                                  <input class="form-control" type="text" name="modelo" value="{{ old('modelo') }}">
                               </div>
                          </div>
                             <div class="container row">
                                <div class="form-group">
                                   <label for="">Numero de Serie</label>
-                                  <input class="form-control" type="text" name="numeroSerie">
+                                  <input class="form-control" type="text" name="numeroSerie" value="{{ old('numeroSerie') }}">
                                </div>
 
                               <div class="form-group ml-5">
                                   <label for="">Clave Inventarial</label>
-                                  <input class="form-control" type="text" name="claveInventarial">
+                                  <input class="form-control" type="text" name="claveInventarial" value="{{ old('claveInventarial') }}">
                               </div>
 
                              <div class="form-group ">
