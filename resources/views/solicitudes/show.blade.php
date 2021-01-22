@@ -119,7 +119,7 @@
                                     </div>
                                     <button type="submit" class="btn btn-primary" id="btnBuscar">Buscar</button>
                                     <div class="col-sm-1"></div>
-                                    <a href="{{ route('equipos.create') }}" class="btn btn-warning">Agregar equipo</a>
+                                    <a href="{{ route('equipos.agregarEquipo',$solicitud->id) }}" class="btn btn-warning">Agregar equipo</a>
                                 </div>
                                 
                             </div>
@@ -181,9 +181,6 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <!-- Poner los datos de una computadora y arreglar las marcas
-                                        de tiempo de la migracion de computadora
-                                     -->
                                      <h5>Grupo de trabajo</h5>
                                      <p>{{ $computadora->grupo_de_trabajo }}</p>
                                 </div>
@@ -209,29 +206,27 @@
                                 </div>
                             </div>
                         @endif
-                        @if($solSop != null)
-                            <hr>
-                            <form action="{{ url('solicitudes/guardarObservacion') }}" method="post">
-                            @csrf
-                                <input type="hidden" name="idSol" value="{{ $solicitud->id }}">
-                                <div class="form-group">
-                                    <label>Observaciones</label>
-                                    <input class="form-control" type="text" name="observacion" value="{{ $solicitud->observaciones }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Tipo de reparacion</label>
-                                    <select name="tipoReparacion" class="form-control">
-                                    @foreach($tipoReparacion as $tipoRe)
-                                        <option value="{{ $tipoRe->id }}" @if($solicitud->tipoReparacion == $tipoRe->id) selected @endif>{{ $tipoRe->tipoReparacion }}</option>
-                                    @endforeach
-                                    </select>
-                                </div>
-                                <div class="row justify-content-center">
-                                    <button class="btn btn-success" type="submit">Guardar</button>
-                                </div>
-                            </form>
-                        @endif
                     @endif
+                    <hr>
+                        <form action="{{ url('solicitudes/guardarObservacion') }}" method="post">
+                        @csrf
+                            <input type="hidden" name="idSol" value="{{ $solicitud->id }}">
+                            <div class="form-group">
+                                <label>Observaciones</label>
+                                <input class="form-control" type="text" name="observacion" value="{{ $solicitud->observaciones }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Tipo de reparacion</label>
+                                <select name="tipoReparacion" class="form-control">
+                                @foreach($tipoReparacion as $tipoRe)
+                                    <option value="{{ $tipoRe->id }}" @if($solicitud->tipoReparacion == $tipoRe->id) selected @endif>{{ $tipoRe->tipoReparacion }}</option>
+                                @endforeach
+                                </select>
+                            </div>
+                            <div class="row justify-content-center">
+                                <button class="btn btn-success" type="submit">Guardar</button>
+                            </div>
+                            </form>
                     </div>
                 </div>
             </div>
@@ -271,7 +266,7 @@
             @endif
         </div>
 
-        @if($solSop != null && $equipo != null)
+        @if($solSop != null)
         <div class="row justify-content-around mt-3 mb-3">
             <form action="{{ url('solicitudes/terminar') }}" method="post">
             @csrf

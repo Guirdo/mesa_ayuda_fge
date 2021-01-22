@@ -20,7 +20,7 @@ class CreateEmpleadosTable extends Migration
             $table->string('apellidoMat',30);
             $table->string('email',255);
             $table->string('telefonoPersonal',10)->nullable();
-            $table->string('extencionTelOf',8)->nullable();
+            $table->string('extencionTelOf',10)->nullable();
             $table->string('CUIP',10)->nullable();
             $table->unsignedBigInteger('idArea');
             $table->unsignedBigInteger('idEstatus')->default(1);

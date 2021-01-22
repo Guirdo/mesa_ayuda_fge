@@ -30,7 +30,7 @@ class SolicitudController extends Controller
      */
     public function index()
     {
-        $solicitudes = null;
+        $solicitudes = Solicitud::where('idEstado',1)->get();
         return view('solicitudes.index',compact('solicitudes'));
     }
 
@@ -44,8 +44,19 @@ class SolicitudController extends Controller
         $soporte = Empleado::find(Auth::user()->idEmpleado);
         $tipoSolicitudes = Cat_Tipo_Solicitud::all();
         $tipoServicios = Cat_TipoServicio::all();
+        $empleado=null;
 
-        return view('solicitudes.create',compact('tipoSolicitudes','tipoServicios','soporte'));
+        return view('solicitudes.create',compact('tipoSolicitudes','tipoServicios','soporte','empleado'));
+    }
+
+    public function agregarSolicitud($idEmpleado){
+        $soporte = Empleado::find(Auth::user()->idEmpleado);
+        $tipoSolicitudes = Cat_Tipo_Solicitud::all();
+        $tipoServicios = Cat_TipoServicio::all();
+        $empleado = Empleado::find($idEmpleado);
+        $area = Area::find($empleado->idArea);
+
+        return view('solicitudes.create',compact('tipoSolicitudes','tipoServicios','soporte','empleado','area'));
     }
 
     /**
@@ -67,9 +78,18 @@ class SolicitudController extends Controller
         $solicitud->tipoServicio = request('tipoServicio');
         $solicitud->descripcionFalla = request('descripcion');
 
+        if(Auth::user()->idTipoUsuario==1){
+            $soporte = Empleado::find(Auth::user()->idEmpleado);
+            $solicitud->folio = self::crearFolio($soporte->idArea);
+        }
+
         $solicitud->save();
 
-        return $this->asignarSoporte($solicitud);
+        if(Auth::user()->idTipoUsuario==1){
+            return redirect()->route('solicitudes.index');
+        }else{
+            return $this->asignarSoporteAutomatico($solicitud);
+        }
     }
 
     /**
@@ -93,11 +113,9 @@ class SolicitudController extends Controller
         $soporte = [];
         if($solSop == null){
             foreach($usuarios as $user){
-                if($user['idTipoUsuario'] == 2){
-                    $emp = Empleado::find($user['idEmpleado']);
-                    if($emp->idEstatus == 1){
-                        array_push($soporte,$emp);
-                    }
+                $emp = Empleado::find($user['idEmpleado']);
+                if($emp->idEstatus == 1){
+                    array_push($soporte,$emp);
                 }
             }
         }else{
@@ -162,7 +180,25 @@ class SolicitudController extends Controller
         //
     }
 
-    public function asignarSoporte($solicitudN){
+    public function asignarSoporte(Request $request){
+        $idSolicitud = $request->sol;
+        $idSoporte = $request->sop;
+
+        $solicitudSoporte = new SolicitudSoporte;
+        $solicitudN = Solicitud::find($idSolicitud);
+        $empleado = Empleado::find($idSoporte);
+
+        $solicitudSoporte->idSoporte = $empleado->id;
+        $solicitudSoporte->idSolicitud = $solicitudN->id;
+        $solicitudSoporte->save();
+
+        $solicitudN->idEstado = 2;
+        $solicitudN->save();
+
+        return redirect()->route('solicitudes.index');
+    }
+
+    public function asignarSoporteAutomatico($solicitudN){
         $solicitudSoporte = new SolicitudSoporte;
         $usuarios = User::join('empleados','empleados.id','=','users.idEmpleado')
         ->select('users.idEmpleado')-> where('empleados.idEstatus',1)-> where('users.idTipoUsuario',2)->get();

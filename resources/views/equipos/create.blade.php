@@ -57,8 +57,7 @@
                      </div>
                      <div id="editData"></div>
                      
-
-                     
+                        <input type="hidden" name="idSolicitud" value="{{ $idSolicitud }}">
                         <a href="{{ route('equipos.index') }}" class="btn btn-secondary">Regresar</a>
                         <button type="submit" class="btn btn-success">Agregar</button>
 

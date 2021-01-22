@@ -87,7 +87,7 @@ $(document).on('click', '#btnImprimir', function (event) {
                 ],
             });
 
-            doc.save('solicitud.pdf');
+            doc.save(solicitud.folio+'.pdf');
         },
         error: function (response) {
             console.log(response);

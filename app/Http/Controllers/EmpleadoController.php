@@ -55,7 +55,9 @@ class EmpleadoController extends Controller
 
         $idAdscripcion = Area::find($empleado->idArea)->idAdscripcion;
         $idRegion = Adscripcion::find($idAdscripcion)->idRegion;
-        $adscripciones = Adscripcion::all()->where('idRegion',$idRegion);
+
+        $areas=Area::where('idAdscripcion',$idAdscripcion)->orderBy('area','asc')->get();
+        $adscripciones = Adscripcion::where('idRegion',$idRegion)->orderBy('adscripcion','asc')->get();
         $regiones = Region::all();
 
         return view('empleados.edit', compact('empleado','areas','estatus',
@@ -83,10 +85,20 @@ class EmpleadoController extends Controller
 
     public function create(){
         $regiones = Region::all();
-        $adscripciones = Adscripcion::where('idRegion',1)->get();
-        $areas = Area::where('idAdscripcion',1)->get();
+        $adscripciones = Adscripcion::where('idRegion',1)->orderBy('adscripcion','asc')->get();
+        $areas = Area::where('idAdscripcion',$adscripciones[0]->id)->orderBy('area','asc')->get();
+        $agregarEmpleado = 0;
 
-        return view('empleados.create',compact('regiones','adscripciones','areas'));
+        return view('empleados.create',compact('regiones','adscripciones','areas','agregarEmpleado'));
+    }
+
+    public function agregarEmpleado(){
+        $regiones = Region::all();
+        $adscripciones = Adscripcion::where('idRegion',1)->orderBy('adscripcion','asc')->get();
+        $areas = Area::where('idAdscripcion',$adscripciones[0]->id)->orderBy('area','asc')->get();
+        $agregarEmpleado = 1;
+
+        return view('empleados.create',compact('regiones','adscripciones','areas','agregarEmpleado'));
     }
 
     public function store(EmpleadoStoreRequest $request)
@@ -104,7 +116,11 @@ class EmpleadoController extends Controller
 
         $empleado->save();
 
-        return redirect()->route('empleados.index');
+        if($request->agregarEmpleado == 1){
+            return redirect()->route('solicitudes.agregar',$empleado->id);
+        }else{
+            return redirect()->route('empleados.index');
+        }
     }
 
     public function destroy($id)
@@ -117,7 +133,7 @@ class EmpleadoController extends Controller
     }
 
     public function adscripciones(Request $request){
-        $adscripciones = Adscripcion::all()->where('idRegion',$request->idRegion);
+        $adscripciones = Adscripcion::where('idRegion',$request->idRegion)->orderBy('adscripcion','asc')->get();
 
         $array = [];
         foreach($adscripciones as $ads){
@@ -128,7 +144,7 @@ class EmpleadoController extends Controller
     }
 
     public function areas(Request $request){
-        $areas = Area::all()->where('idAdscripcion',$request->idAds);
+        $areas = Area::where('idAdscripcion',$request->idAds)->orderBy('area','asc')->get();
 
         $array = [];
         foreach($areas as $ads){

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Equipo;
+use App\EquipoSolicitud;
 use App\cat_tipo_equipo;
 use App\Computadora;
 use App\Http\Requests\EquipoStoreRequest;
@@ -31,10 +32,11 @@ class EquipoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {//TODO
+    {
         $tipoEquipo = cat_tipo_equipo::all();
+        $idSolicitud = null;
 
-        return view('equipos.create',compact('tipoEquipo'));
+        return view('equipos.create',compact('tipoEquipo','idSolicitud'));
     }
 
     /**
@@ -53,7 +55,6 @@ class EquipoController extends Controller
         $equipo->claveInventarial = request('claveInventarial');
         $equipo->idTipoEquipo = request('tipoEquipo');
         $valida = request('tipoEquipo');
-        
 
         if($valida==73){
             $computadora = new Computadora;
@@ -68,8 +69,19 @@ class EquipoController extends Controller
         }
 
         $equipo->save();
-        
-        return redirect()->route('equipos.index');
+
+        if($request->idSolicitud == null){
+            return redirect()->route('equipos.index');
+        }else{
+            $idSolicitud = $request->idSolicitud;
+
+            $equSol = new EquipoSolicitud;
+            $equSol->idSolicitud = $idSolicitud;
+            $equSol->idEquipo = $equipo->id;
+            $equSol->save();
+
+            return redirect()->route('solicitudes.show',$request->idSolicitud);
+        }
     }
 
     /**
@@ -146,5 +158,11 @@ class EquipoController extends Controller
         $tipoEquipo = cat_tipo_equipo::find($equipo->idTipoEquipo);
 
         return response()->json(['equipo'=>$equipo,'tipoEquipo'=>$tipoEquipo]);
+    }
+
+    public function agregarEquipo($idSolicitud){
+        $tipoEquipo = cat_tipo_equipo::all();
+
+        return view('equipos.create',compact('tipoEquipo','idSolicitud'));
     }
 }

@@ -32,6 +32,7 @@ Route::post('/empleados/adscripciones','EmpleadoController@adscripciones');
 Route::post('/empleados/areas','EmpleadoController@areas');
 Route::post('/empleados/darEmpleado','EmpleadoController@darEmpleado');
 Route::post('/empleados/buscarEmpleados','EmpleadoController@buscarEmpleados');
+Route::get('/agregarEmpleado','EmpleadoController@agregarEmpleado')->name('empleados.agregar');
 
 Route::post('/solicitudes/asignar','SolicitudController@asignarSoporte');
 Route::post('/solicitudes/guardarEquipo','SolicitudController@guardarEquipo');
@@ -42,9 +43,11 @@ Route::post('/solicitudes/posponer','SolicitudController@posponerSolicitud');
 Route::post('/solicitudes/generar','SolicitudController@generarPDF');
 Route::post('/solicitudes/gestion','SolicitudController@gestionSolicitudes');
 Route::get('/solicitudes/recibo/{folio}','SolicitudController@generarRecibo')->name('solicitudes.recibo');
+Route::get('/agregarSolicitud/{idEmpleado}','SolicitudController@agregarSolicitud')->name('solicitudes.agregar');
 
 Route::resource('equipos', 'EquipoController');
 Route::post('/equipos/buscarEquipo','EquipoController@buscarEquipo');
+Route::get('/equipos/agregarEquipo/{idSolicitud}','EquipoController@agregarEquipo')->name('equipos.agregarEquipo');
 
 Route::resource('solicitudesSoporte','soporteSolicitudController');
 Route::post('/solicitudesSoporte/asignar','soporteSolicitudController@asignarSoporte');

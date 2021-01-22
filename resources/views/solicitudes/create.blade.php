@@ -55,7 +55,7 @@
                                 <input type="text" name="apellidoPat" id="apellidoPat" class="form-control" placeholder="Buscar por apellido paterno">
                             </div>
                             <button class="btn btn-success" id="btnBuscar">Buscar</button>
-                            <a href="{{ route('empleados.create') }}" class="btn btn-warning">Agregar empleado</a>
+                            <a href="{{ route('empleados.agregar') }}" class="btn btn-warning">Agregar empleado</a>
                         </div>
 
                         <div class="my-custom-scrollbar table-wrapper-scroll-y">
@@ -69,7 +69,17 @@
                                         <th>Area</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tbEmpleados"></tbody>
+                                <tbody id="tbEmpleados">
+                                    @if($empleado!=null)
+                                        <tr>
+                                            <td><input type="radio" name="idEmpleado" value="{{ $empleado->id }}"></td>
+                                            <td>{{ $empleado->nombre.' '.$empleado->apellidoPat.' '.$empleado->apellidoMat }}</td>
+                                            <td>{{ $empleado->telefonoPersonal }}</td>
+                                            <td>{{ $empleado->email }}</td>
+                                            <td>{{ $area->area }}</td>
+                                        </tr>
+                                    @endif
+                                </tbody>
                             </table>
                         </div>
 

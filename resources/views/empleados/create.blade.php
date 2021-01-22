@@ -81,7 +81,7 @@
                                 <option value="{{ $adscripcion->id }}">{{ $adscripcion->adscripcion }}</option>
                                 @endif
                             @endforeach
-                            </select>
+                        </select>
                         </div>
 
                         <div class="form-group">
@@ -93,6 +93,7 @@
                             </select>
                         </div>
 
+                        <input type="hidden" name="agregarEmpleado" value="{{ $agregarEmpleado }}">
                         <a href="{{ route('empleados.index') }}" class="btn btn-secondary">Regresar</a>
                         <button type="submit" class="btn btn-success">Agregar</button>
 
